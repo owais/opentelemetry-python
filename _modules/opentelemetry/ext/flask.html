@@ -1,0 +1,378 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>opentelemetry.ext.flask &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../auto_instrumentation/auto_instrumentation.html">OpenTelemetry Python Autoinstrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/grpc/grpc.client_interceptor.html">grpc.client_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/grpc/grpc.server_interceptor.html">grpc.server_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/http_requests/http_requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/otcollector/otcollector.html">OpenTelemetry Collector Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/basic_tracer/README.html">Basic Tracer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/http/README.html">HTTP Integration Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/jaeger_exporter/README.html">Jaeger Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/opentracing/README.html">OpenTracing Shim Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/otcollector-metrics/README.html">OT Collector Metrics Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/otcollector-tracer/README.html">OT Collector Tracer Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/prometheus/README.html">Prometheus Metrics Exporter Example</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>opentelemetry.ext.flask</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for opentelemetry.ext.flask</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Note: This package is not named &quot;flask&quot; because of</span>
+<span class="c1"># https://github.com/PyCQA/pylint/issues/2648</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This library builds on the OpenTelemetry WSGI middleware to track web requests</span>
+<span class="sd">in Flask applications. In addition to opentelemetry-ext-wsgi, it supports</span>
+<span class="sd">flask-specific features such as:</span>
+
+<span class="sd">* The Flask endpoint name is used as the Span name.</span>
+<span class="sd">* The ``http.route`` Span attribute is set so that one can see which URL rule</span>
+<span class="sd">  matched a request.</span>
+
+<span class="sd">Usage</span>
+<span class="sd">-----</span>
+
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">    from flask import Flask</span>
+<span class="sd">    from opentelemetry.ext.flask import instrument_app</span>
+
+<span class="sd">    app = Flask(__name__)</span>
+<span class="sd">    instrument_app(app)  # This is where the magic happens. ✨</span>
+
+<span class="sd">    @app.route(&quot;/&quot;)</span>
+<span class="sd">    def hello():</span>
+<span class="sd">        return &quot;Hello!&quot;</span>
+
+<span class="sd">    if __name__ == &quot;__main__&quot;:</span>
+<span class="sd">        app.run(debug=True)</span>
+
+<span class="sd">API</span>
+<span class="sd">---</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">flask</span>
+
+<span class="kn">import</span> <span class="nn">opentelemetry.ext.wsgi</span> <span class="k">as</span> <span class="nn">otel_wsgi</span>
+<span class="kn">from</span> <span class="nn">opentelemetry</span> <span class="kn">import</span> <span class="n">context</span><span class="p">,</span> <span class="n">propagators</span><span class="p">,</span> <span class="n">trace</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.auto_instrumentation.instrumentor</span> <span class="kn">import</span> <span class="n">BaseInstrumentor</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.ext.flask.version</span> <span class="kn">import</span> <span class="n">__version__</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.util</span> <span class="kn">import</span> <span class="n">time_ns</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">_ENVIRON_STARTTIME_KEY</span> <span class="o">=</span> <span class="s2">&quot;opentelemetry-flask.starttime_key&quot;</span>
+<span class="n">_ENVIRON_SPAN_KEY</span> <span class="o">=</span> <span class="s2">&quot;opentelemetry-flask.span_key&quot;</span>
+<span class="n">_ENVIRON_ACTIVATION_KEY</span> <span class="o">=</span> <span class="s2">&quot;opentelemetry-flask.activation_key&quot;</span>
+<span class="n">_ENVIRON_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;opentelemetry-flask.token&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">_InstrumentedFlask</span><span class="p">(</span><span class="n">flask</span><span class="o">.</span><span class="n">Flask</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Single use variable here to avoid recursion issues.</span>
+        <span class="n">wsgi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wsgi_app</span>
+
+        <span class="k">def</span> <span class="nf">wrapped_app</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+            <span class="c1"># We want to measure the time for route matching, etc.</span>
+            <span class="c1"># In theory, we could start the span here and use</span>
+            <span class="c1"># update_name later but that API is &quot;highly discouraged&quot; so</span>
+            <span class="c1"># we better avoid it.</span>
+            <span class="n">environ</span><span class="p">[</span><span class="n">_ENVIRON_STARTTIME_KEY</span><span class="p">]</span> <span class="o">=</span> <span class="n">time_ns</span><span class="p">()</span>
+
+            <span class="k">def</span> <span class="nf">_start_response</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">response_headers</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="n">span</span> <span class="o">=</span> <span class="n">flask</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_ENVIRON_SPAN_KEY</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">span</span><span class="p">:</span>
+                    <span class="n">otel_wsgi</span><span class="o">.</span><span class="n">add_response_attributes</span><span class="p">(</span>
+                        <span class="n">span</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">response_headers</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                        <span class="s2">&quot;Flask environ&#39;s OpenTelemetry span &quot;</span>
+                        <span class="s2">&quot;missing at _start_response(</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span>
+                        <span class="n">status</span><span class="p">,</span>
+                    <span class="p">)</span>
+
+                <span class="k">return</span> <span class="n">start_response</span><span class="p">(</span>
+                    <span class="n">status</span><span class="p">,</span> <span class="n">response_headers</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+                <span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">wsgi</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">_start_response</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">wsgi_app</span> <span class="o">=</span> <span class="n">wrapped_app</span>
+
+        <span class="nd">@self</span><span class="o">.</span><span class="n">before_request</span>
+        <span class="k">def</span> <span class="nf">_before_flask_request</span><span class="p">():</span>
+            <span class="n">environ</span> <span class="o">=</span> <span class="n">flask</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">environ</span>
+            <span class="n">span_name</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">flask</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">endpoint</span>
+                <span class="ow">or</span> <span class="n">otel_wsgi</span><span class="o">.</span><span class="n">get_default_span_name</span><span class="p">(</span><span class="n">environ</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">token</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span>
+                <span class="n">propagators</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">otel_wsgi</span><span class="o">.</span><span class="n">get_header_from_environ</span><span class="p">,</span> <span class="n">environ</span><span class="p">)</span>
+            <span class="p">)</span>
+
+            <span class="n">tracer</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">get_tracer</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">__version__</span><span class="p">)</span>
+
+            <span class="n">attributes</span> <span class="o">=</span> <span class="n">otel_wsgi</span><span class="o">.</span><span class="n">collect_request_attributes</span><span class="p">(</span><span class="n">environ</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">flask</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">url_rule</span><span class="p">:</span>
+                <span class="c1"># For 404 that result from no route found, etc, we</span>
+                <span class="c1"># don&#39;t have a url_rule.</span>
+                <span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;http.route&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flask</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">url_rule</span><span class="o">.</span><span class="n">rule</span>
+            <span class="n">span</span> <span class="o">=</span> <span class="n">tracer</span><span class="o">.</span><span class="n">start_span</span><span class="p">(</span>
+                <span class="n">span_name</span><span class="p">,</span>
+                <span class="n">kind</span><span class="o">=</span><span class="n">trace</span><span class="o">.</span><span class="n">SpanKind</span><span class="o">.</span><span class="n">SERVER</span><span class="p">,</span>
+                <span class="n">attributes</span><span class="o">=</span><span class="n">attributes</span><span class="p">,</span>
+                <span class="n">start_time</span><span class="o">=</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_ENVIRON_STARTTIME_KEY</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="n">activation</span> <span class="o">=</span> <span class="n">tracer</span><span class="o">.</span><span class="n">use_span</span><span class="p">(</span><span class="n">span</span><span class="p">,</span> <span class="n">end_on_exit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">activation</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
+            <span class="n">environ</span><span class="p">[</span><span class="n">_ENVIRON_ACTIVATION_KEY</span><span class="p">]</span> <span class="o">=</span> <span class="n">activation</span>
+            <span class="n">environ</span><span class="p">[</span><span class="n">_ENVIRON_SPAN_KEY</span><span class="p">]</span> <span class="o">=</span> <span class="n">span</span>
+            <span class="n">environ</span><span class="p">[</span><span class="n">_ENVIRON_TOKEN</span><span class="p">]</span> <span class="o">=</span> <span class="n">token</span>
+
+        <span class="nd">@self</span><span class="o">.</span><span class="n">teardown_request</span>
+        <span class="k">def</span> <span class="nf">_teardown_flask_request</span><span class="p">(</span><span class="n">exc</span><span class="p">):</span>
+            <span class="n">activation</span> <span class="o">=</span> <span class="n">flask</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_ENVIRON_ACTIVATION_KEY</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">activation</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s2">&quot;Flask environ&#39;s OpenTelemetry activation missing&quot;</span>
+                    <span class="s2">&quot;at _teardown_flask_request(</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span>
+                    <span class="n">exc</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">return</span>
+
+            <span class="k">if</span> <span class="n">exc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">activation</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">activation</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span>
+                    <span class="nb">type</span><span class="p">(</span><span class="n">exc</span><span class="p">),</span> <span class="n">exc</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">exc</span><span class="p">,</span> <span class="s2">&quot;__traceback__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="n">context</span><span class="o">.</span><span class="n">detach</span><span class="p">(</span><span class="n">flask</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_ENVIRON_TOKEN</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="FlaskInstrumentor"><a class="viewcode-back" href="../../../ext/flask/flask.html#opentelemetry.ext.flask.FlaskInstrumentor">[docs]</a><span class="k">class</span> <span class="nc">FlaskInstrumentor</span><span class="p">(</span><span class="n">BaseInstrumentor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A instrumentor for flask.Flask</span>
+
+<span class="sd">    See `BaseInstrumentor`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_original_flask</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_instrument</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_original_flask</span> <span class="o">=</span> <span class="n">flask</span><span class="o">.</span><span class="n">Flask</span>
+        <span class="n">flask</span><span class="o">.</span><span class="n">Flask</span> <span class="o">=</span> <span class="n">_InstrumentedFlask</span>
+
+    <span class="k">def</span> <span class="nf">_uninstrument</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">flask</span><span class="o">.</span><span class="n">Flask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_flask</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

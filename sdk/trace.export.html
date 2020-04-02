@@ -1,0 +1,502 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>opentelemetry.sdk.trace.export &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="OpenTelemetry Python Autoinstrumentation" href="../auto_instrumentation/auto_instrumentation.html" />
+    <link rel="prev" title="opentelemetry.sdk.trace package" href="trace.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="sdk.html">OpenTelemetry Python SDK</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="context.html">opentelemetry.sdk.context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metrics.html">opentelemetry.sdk.metrics package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="trace.html">opentelemetry.sdk.trace package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="trace.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">opentelemetry.sdk.trace.export</a></li>
+<li class="toctree-l4"><a class="reference internal" href="util.instrumentation.html">opentelemetry.sdk.util.instrumentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../auto_instrumentation/auto_instrumentation.html">OpenTelemetry Python Autoinstrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ext/dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ext/flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ext/grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ext/grpc/grpc.client_interceptor.html">grpc.client_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ext/grpc/grpc.server_interceptor.html">grpc.server_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ext/http_requests/http_requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ext/jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ext/mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ext/opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ext/otcollector/otcollector.html">OpenTelemetry Collector Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ext/prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ext/psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ext/pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ext/wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ext/zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/basic_tracer/README.html">Basic Tracer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/http/README.html">HTTP Integration Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/jaeger_exporter/README.html">Jaeger Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/opentracing/README.html">OpenTracing Shim Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/otcollector-metrics/README.html">OT Collector Metrics Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/otcollector-tracer/README.html">OT Collector Tracer Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/prometheus/README.html">Prometheus Metrics Exporter Example</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sdk.html">OpenTelemetry Python SDK</a> &raquo;</li>
+        
+          <li><a href="trace.html">opentelemetry.sdk.trace package</a> &raquo;</li>
+        
+      <li>opentelemetry.sdk.trace.export</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/sdk/trace.export.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-opentelemetry.sdk.trace.export">
+<span id="opentelemetry-sdk-trace-export"></span><h1>opentelemetry.sdk.trace.export<a class="headerlink" href="#module-opentelemetry.sdk.trace.export" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="opentelemetry.sdk.trace.export.SpanExportResult">
+<em class="property">class </em><code class="sig-prename descclassname">opentelemetry.sdk.trace.export.</code><code class="sig-name descname">SpanExportResult</code><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#SpanExportResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.SpanExportResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
+<p>An enumeration.</p>
+<dl class="attribute">
+<dt id="opentelemetry.sdk.trace.export.SpanExportResult.SUCCESS">
+<code class="sig-name descname">SUCCESS</code><em class="property"> = 0</em><a class="headerlink" href="#opentelemetry.sdk.trace.export.SpanExportResult.SUCCESS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opentelemetry.sdk.trace.export.SpanExportResult.FAILED_RETRYABLE">
+<code class="sig-name descname">FAILED_RETRYABLE</code><em class="property"> = 1</em><a class="headerlink" href="#opentelemetry.sdk.trace.export.SpanExportResult.FAILED_RETRYABLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opentelemetry.sdk.trace.export.SpanExportResult.FAILED_NOT_RETRYABLE">
+<code class="sig-name descname">FAILED_NOT_RETRYABLE</code><em class="property"> = 2</em><a class="headerlink" href="#opentelemetry.sdk.trace.export.SpanExportResult.FAILED_NOT_RETRYABLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opentelemetry.sdk.trace.export.SpanExporter">
+<em class="property">class </em><code class="sig-prename descclassname">opentelemetry.sdk.trace.export.</code><code class="sig-name descname">SpanExporter</code><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#SpanExporter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.SpanExporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Interface for exporting spans.</p>
+<p>Interface to be implemented by services that want to export recorded in
+its own format.</p>
+<p>To export data this MUST be registered to the :class`opentelemetry.sdk.trace.Tracer` using a
+<a class="reference internal" href="#opentelemetry.sdk.trace.export.SimpleExportSpanProcessor" title="opentelemetry.sdk.trace.export.SimpleExportSpanProcessor"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SimpleExportSpanProcessor</span></code></a> or a <a class="reference internal" href="#opentelemetry.sdk.trace.export.BatchExportSpanProcessor" title="opentelemetry.sdk.trace.export.BatchExportSpanProcessor"><code class="xref any py py-class docutils literal notranslate"><span class="pre">BatchExportSpanProcessor</span></code></a>.</p>
+<dl class="method">
+<dt id="opentelemetry.sdk.trace.export.SpanExporter.export">
+<code class="sig-name descname">export</code><span class="sig-paren">(</span><em class="sig-param">spans</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#SpanExporter.export"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.SpanExporter.export" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports a batch of telemetry data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>spans</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference internal" href="trace.html#opentelemetry.sdk.trace.Span" title="opentelemetry.sdk.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">Span</span></code></a>]) – The list of <a class="reference internal" href="../api/trace.html#opentelemetry.trace.Span" title="opentelemetry.trace.Span"><code class="xref any py py-class docutils literal notranslate"><span class="pre">opentelemetry.trace.Span</span></code></a> objects to be exported</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opentelemetry.sdk.trace.export.SpanExportResult" title="opentelemetry.sdk.trace.export.SpanExportResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpanExportResult</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The result of the export</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.sdk.trace.export.SpanExporter.shutdown">
+<code class="sig-name descname">shutdown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#SpanExporter.shutdown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.SpanExporter.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shuts down the exporter.</p>
+<p>Called when the SDK is shut down.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opentelemetry.sdk.trace.export.SimpleExportSpanProcessor">
+<em class="property">class </em><code class="sig-prename descclassname">opentelemetry.sdk.trace.export.</code><code class="sig-name descname">SimpleExportSpanProcessor</code><span class="sig-paren">(</span><em class="sig-param">span_exporter</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#SimpleExportSpanProcessor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.SimpleExportSpanProcessor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="trace.html#opentelemetry.sdk.trace.SpanProcessor" title="opentelemetry.sdk.trace.SpanProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.sdk.trace.SpanProcessor</span></code></a></p>
+<p>Simple SpanProcessor implementation.</p>
+<p>SimpleExportSpanProcessor is an implementation of <a class="reference internal" href="trace.html#opentelemetry.sdk.trace.SpanProcessor" title="opentelemetry.sdk.trace.SpanProcessor"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SpanProcessor</span></code></a> that
+passes ended spans directly to the configured <a class="reference internal" href="#opentelemetry.sdk.trace.export.SpanExporter" title="opentelemetry.sdk.trace.export.SpanExporter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SpanExporter</span></code></a>.</p>
+<dl class="method">
+<dt id="opentelemetry.sdk.trace.export.SimpleExportSpanProcessor.on_start">
+<code class="sig-name descname">on_start</code><span class="sig-paren">(</span><em class="sig-param">span</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#SimpleExportSpanProcessor.on_start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.SimpleExportSpanProcessor.on_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a <a class="reference internal" href="../api/trace.html#opentelemetry.trace.Span" title="opentelemetry.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.trace.Span</span></code></a> is started.</p>
+<p>This method is called synchronously on the thread that starts the
+span, therefore it should not block or throw an exception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>span</strong> (<a class="reference internal" href="trace.html#opentelemetry.sdk.trace.Span" title="opentelemetry.sdk.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">Span</span></code></a>) – The <a class="reference internal" href="../api/trace.html#opentelemetry.trace.Span" title="opentelemetry.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.trace.Span</span></code></a> that just started.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.sdk.trace.export.SimpleExportSpanProcessor.on_end">
+<code class="sig-name descname">on_end</code><span class="sig-paren">(</span><em class="sig-param">span</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#SimpleExportSpanProcessor.on_end"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.SimpleExportSpanProcessor.on_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a <a class="reference internal" href="../api/trace.html#opentelemetry.trace.Span" title="opentelemetry.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.trace.Span</span></code></a> is ended.</p>
+<p>This method is called synchronously on the thread that ends the
+span, therefore it should not block or throw an exception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>span</strong> (<a class="reference internal" href="trace.html#opentelemetry.sdk.trace.Span" title="opentelemetry.sdk.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">Span</span></code></a>) – The <a class="reference internal" href="../api/trace.html#opentelemetry.trace.Span" title="opentelemetry.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.trace.Span</span></code></a> that just ended.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.sdk.trace.export.SimpleExportSpanProcessor.shutdown">
+<code class="sig-name descname">shutdown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#SimpleExportSpanProcessor.shutdown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.SimpleExportSpanProcessor.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a <a class="reference internal" href="trace.html#opentelemetry.sdk.trace.Tracer" title="opentelemetry.sdk.trace.Tracer"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.sdk.trace.Tracer</span></code></a> is shutdown.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.sdk.trace.export.SimpleExportSpanProcessor.force_flush">
+<code class="sig-name descname">force_flush</code><span class="sig-paren">(</span><em class="sig-param">timeout_millis=30000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#SimpleExportSpanProcessor.force_flush"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.SimpleExportSpanProcessor.force_flush" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export all ended spans to the configured Exporter that have not yet
+been exported.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>timeout_millis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The maximum amount of time to wait for spans to be
+exported.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>False if the timeout is exceeded, True otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opentelemetry.sdk.trace.export.BatchExportSpanProcessor">
+<em class="property">class </em><code class="sig-prename descclassname">opentelemetry.sdk.trace.export.</code><code class="sig-name descname">BatchExportSpanProcessor</code><span class="sig-paren">(</span><em class="sig-param">span_exporter</em>, <em class="sig-param">max_queue_size=2048</em>, <em class="sig-param">schedule_delay_millis=5000</em>, <em class="sig-param">max_export_batch_size=512</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#BatchExportSpanProcessor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.BatchExportSpanProcessor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="trace.html#opentelemetry.sdk.trace.SpanProcessor" title="opentelemetry.sdk.trace.SpanProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.sdk.trace.SpanProcessor</span></code></a></p>
+<p>Batch span processor implementation.</p>
+<p>BatchExportSpanProcessor is an implementation of <a class="reference internal" href="trace.html#opentelemetry.sdk.trace.SpanProcessor" title="opentelemetry.sdk.trace.SpanProcessor"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SpanProcessor</span></code></a> that
+batches ended spans and pushes them to the configured <a class="reference internal" href="#opentelemetry.sdk.trace.export.SpanExporter" title="opentelemetry.sdk.trace.export.SpanExporter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">SpanExporter</span></code></a>.</p>
+<dl class="method">
+<dt id="opentelemetry.sdk.trace.export.BatchExportSpanProcessor.on_start">
+<code class="sig-name descname">on_start</code><span class="sig-paren">(</span><em class="sig-param">span</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#BatchExportSpanProcessor.on_start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.BatchExportSpanProcessor.on_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a <a class="reference internal" href="../api/trace.html#opentelemetry.trace.Span" title="opentelemetry.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.trace.Span</span></code></a> is started.</p>
+<p>This method is called synchronously on the thread that starts the
+span, therefore it should not block or throw an exception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>span</strong> (<a class="reference internal" href="trace.html#opentelemetry.sdk.trace.Span" title="opentelemetry.sdk.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">Span</span></code></a>) – The <a class="reference internal" href="../api/trace.html#opentelemetry.trace.Span" title="opentelemetry.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.trace.Span</span></code></a> that just started.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.sdk.trace.export.BatchExportSpanProcessor.on_end">
+<code class="sig-name descname">on_end</code><span class="sig-paren">(</span><em class="sig-param">span</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#BatchExportSpanProcessor.on_end"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.BatchExportSpanProcessor.on_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a <a class="reference internal" href="../api/trace.html#opentelemetry.trace.Span" title="opentelemetry.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.trace.Span</span></code></a> is ended.</p>
+<p>This method is called synchronously on the thread that ends the
+span, therefore it should not block or throw an exception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>span</strong> (<a class="reference internal" href="trace.html#opentelemetry.sdk.trace.Span" title="opentelemetry.sdk.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">Span</span></code></a>) – The <a class="reference internal" href="../api/trace.html#opentelemetry.trace.Span" title="opentelemetry.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.trace.Span</span></code></a> that just ended.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.sdk.trace.export.BatchExportSpanProcessor.worker">
+<code class="sig-name descname">worker</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#BatchExportSpanProcessor.worker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.BatchExportSpanProcessor.worker" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.sdk.trace.export.BatchExportSpanProcessor.export">
+<code class="sig-name descname">export</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#BatchExportSpanProcessor.export"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.BatchExportSpanProcessor.export" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports at most max_export_batch_size spans.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.sdk.trace.export.BatchExportSpanProcessor.force_flush">
+<code class="sig-name descname">force_flush</code><span class="sig-paren">(</span><em class="sig-param">timeout_millis=30000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#BatchExportSpanProcessor.force_flush"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.BatchExportSpanProcessor.force_flush" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export all ended spans to the configured Exporter that have not yet
+been exported.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>timeout_millis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The maximum amount of time to wait for spans to be
+exported.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>False if the timeout is exceeded, True otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.sdk.trace.export.BatchExportSpanProcessor.shutdown">
+<code class="sig-name descname">shutdown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#BatchExportSpanProcessor.shutdown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.BatchExportSpanProcessor.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a <a class="reference internal" href="trace.html#opentelemetry.sdk.trace.Tracer" title="opentelemetry.sdk.trace.Tracer"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.sdk.trace.Tracer</span></code></a> is shutdown.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opentelemetry.sdk.trace.export.ConsoleSpanExporter">
+<em class="property">class </em><code class="sig-prename descclassname">opentelemetry.sdk.trace.export.</code><code class="sig-name descname">ConsoleSpanExporter</code><span class="sig-paren">(</span><em class="sig-param">out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em>, <em class="sig-param">formatter=&lt;function ConsoleSpanExporter.&lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#ConsoleSpanExporter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.ConsoleSpanExporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opentelemetry.sdk.trace.export.SpanExporter" title="opentelemetry.sdk.trace.export.SpanExporter"><code class="xref py py-class docutils literal notranslate"><span class="pre">opentelemetry.sdk.trace.export.SpanExporter</span></code></a></p>
+<p>Implementation of <a class="reference internal" href="#opentelemetry.sdk.trace.export.SpanExporter" title="opentelemetry.sdk.trace.export.SpanExporter"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpanExporter</span></code></a> that prints spans to the
+console.</p>
+<p>This class can be used for diagnostic purposes. It prints the exported
+spans to the console STDOUT.</p>
+<dl class="method">
+<dt id="opentelemetry.sdk.trace.export.ConsoleSpanExporter.export">
+<code class="sig-name descname">export</code><span class="sig-paren">(</span><em class="sig-param">spans</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/opentelemetry/sdk/trace/export.html#ConsoleSpanExporter.export"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.sdk.trace.export.ConsoleSpanExporter.export" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports a batch of telemetry data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>spans</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference internal" href="trace.html#opentelemetry.sdk.trace.Span" title="opentelemetry.sdk.trace.Span"><code class="xref py py-class docutils literal notranslate"><span class="pre">Span</span></code></a>]) – The list of <a class="reference internal" href="../api/trace.html#opentelemetry.trace.Span" title="opentelemetry.trace.Span"><code class="xref any py py-class docutils literal notranslate"><span class="pre">opentelemetry.trace.Span</span></code></a> objects to be exported</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opentelemetry.sdk.trace.export.SpanExportResult" title="opentelemetry.sdk.trace.export.SpanExportResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpanExportResult</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The result of the export</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../auto_instrumentation/auto_instrumentation.html" class="btn btn-neutral float-right" title="OpenTelemetry Python Autoinstrumentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="trace.html" class="btn btn-neutral float-left" title="opentelemetry.sdk.trace package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

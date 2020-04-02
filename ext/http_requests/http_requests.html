@@ -1,0 +1,283 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OpenTelemetry requests Integration &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Opentelemetry Jaeger Exporter" href="../jaeger/jaeger.html" />
+    <link rel="prev" title="grpc.server_interceptor module" href="../grpc/grpc.server_interceptor.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auto_instrumentation/auto_instrumentation.html">OpenTelemetry Python Autoinstrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grpc/grpc.client_interceptor.html">grpc.client_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grpc/grpc.server_interceptor.html">grpc.server_interceptor module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">OpenTelemetry requests Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#limitations">Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../otcollector/otcollector.html">OpenTelemetry Collector Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/basic_tracer/README.html">Basic Tracer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/http/README.html">HTTP Integration Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/jaeger_exporter/README.html">Jaeger Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/opentracing/README.html">OpenTracing Shim Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/otcollector-metrics/README.html">OT Collector Metrics Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/otcollector-tracer/README.html">OT Collector Tracer Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/prometheus/README.html">Prometheus Metrics Exporter Example</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>OpenTelemetry requests Integration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/ext/http_requests/http_requests.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-opentelemetry.ext.http_requests">
+<span id="opentelemetry-requests-integration"></span><h1>OpenTelemetry requests Integration<a class="headerlink" href="#module-opentelemetry.ext.http_requests" title="Permalink to this headline">¶</a></h1>
+<p>This library allows tracing HTTP requests made by the
+<a class="reference external" href="https://requests.kennethreitz.org/en/master/">requests</a> library.</p>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">opentelemetry.ext.http_requests</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.trace</span> <span class="kn">import</span> <span class="n">TracerProvider</span>
+
+<span class="n">opentelemetry</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">http_requests</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="n">TracerProvider</span><span class="p">())</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://www.example.org/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<p>Note that calls that do not use the higher-level APIs but use
+<code class="code docutils literal notranslate"><span class="pre">requests.sessions.Session.send</span></code> (or an alias thereof) directly, are
+currently not traced. If you find any other way to trigger an untraced HTTP
+request, please report it via a GitHub issue with <code class="code docutils literal notranslate"><span class="pre">[requests:</span> <span class="pre">untraced</span>
+<span class="pre">API]</span></code> in the title.</p>
+</div>
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="opentelemetry.ext.http_requests.enable">
+<code class="sig-prename descclassname">opentelemetry.ext.http_requests.</code><code class="sig-name descname">enable</code><span class="sig-paren">(</span><em class="sig-param">tracer_provider</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/http_requests.html#enable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.http_requests.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables tracing of all requests calls that go through
+<code class="code docutils literal notranslate"><span class="pre">requests.session.Session.request</span></code> (this includes
+<code class="code docutils literal notranslate"><span class="pre">requests.get</span></code>, etc.).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="opentelemetry.ext.http_requests.disable">
+<code class="sig-prename descclassname">opentelemetry.ext.http_requests.</code><code class="sig-name descname">disable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/http_requests.html#disable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.http_requests.disable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables instrumentation of <code class="code docutils literal notranslate"><span class="pre">requests</span></code> through this module.</p>
+<p>Note that this only works if no other module also patches requests.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../jaeger/jaeger.html" class="btn btn-neutral float-right" title="Opentelemetry Jaeger Exporter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../grpc/grpc.server_interceptor.html" class="btn btn-neutral float-left" title="grpc.server_interceptor module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,510 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>opentelemetry.sdk.trace.export &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../auto_instrumentation/auto_instrumentation.html">OpenTelemetry Python Autoinstrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ext/dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ext/flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ext/grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ext/grpc/grpc.client_interceptor.html">grpc.client_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ext/grpc/grpc.server_interceptor.html">grpc.server_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ext/http_requests/http_requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ext/jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ext/mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ext/opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ext/otcollector/otcollector.html">OpenTelemetry Collector Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ext/prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ext/psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ext/pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ext/wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ext/zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/basic_tracer/README.html">Basic Tracer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/http/README.html">HTTP Integration Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/jaeger_exporter/README.html">Jaeger Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/opentracing/README.html">OpenTracing Shim Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/otcollector-metrics/README.html">OT Collector Metrics Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/otcollector-tracer/README.html">OT Collector Tracer Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/prometheus/README.html">Prometheus Metrics Exporter Example</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../trace.html">opentelemetry.sdk.trace</a> &raquo;</li>
+        
+      <li>opentelemetry.sdk.trace.export</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for opentelemetry.sdk.trace.export</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright The OpenTelemetry Authors</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">typing</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<span class="kn">from</span> <span class="nn">opentelemetry.context</span> <span class="kn">import</span> <span class="n">attach</span><span class="p">,</span> <span class="n">detach</span><span class="p">,</span> <span class="n">get_current</span><span class="p">,</span> <span class="n">set_value</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.trace</span> <span class="kn">import</span> <span class="n">DefaultSpan</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.util</span> <span class="kn">import</span> <span class="n">time_ns</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Span</span><span class="p">,</span> <span class="n">SpanProcessor</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SpanExportResult"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.SpanExportResult">[docs]</a><span class="k">class</span> <span class="nc">SpanExportResult</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">SUCCESS</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">FAILED_RETRYABLE</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">FAILED_NOT_RETRYABLE</span> <span class="o">=</span> <span class="mi">2</span></div>
+
+
+<div class="viewcode-block" id="SpanExporter"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.SpanExporter">[docs]</a><span class="k">class</span> <span class="nc">SpanExporter</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Interface for exporting spans.</span>
+
+<span class="sd">    Interface to be implemented by services that want to export recorded in</span>
+<span class="sd">    its own format.</span>
+
+<span class="sd">    To export data this MUST be registered to the :class`opentelemetry.sdk.trace.Tracer` using a</span>
+<span class="sd">    `SimpleExportSpanProcessor` or a `BatchExportSpanProcessor`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SpanExporter.export"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.SpanExporter.export">[docs]</a>    <span class="k">def</span> <span class="nf">export</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spans</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Span</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;SpanExportResult&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Exports a batch of telemetry data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            spans: The list of `opentelemetry.trace.Span` objects to be exported</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The result of the export</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="SpanExporter.shutdown"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.SpanExporter.shutdown">[docs]</a>    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Shuts down the exporter.</span>
+
+<span class="sd">        Called when the SDK is shut down.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="SimpleExportSpanProcessor"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.SimpleExportSpanProcessor">[docs]</a><span class="k">class</span> <span class="nc">SimpleExportSpanProcessor</span><span class="p">(</span><span class="n">SpanProcessor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Simple SpanProcessor implementation.</span>
+
+<span class="sd">    SimpleExportSpanProcessor is an implementation of `SpanProcessor` that</span>
+<span class="sd">    passes ended spans directly to the configured `SpanExporter`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">span_exporter</span><span class="p">:</span> <span class="n">SpanExporter</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">span_exporter</span> <span class="o">=</span> <span class="n">span_exporter</span>
+
+<div class="viewcode-block" id="SimpleExportSpanProcessor.on_start"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.SimpleExportSpanProcessor.on_start">[docs]</a>    <span class="k">def</span> <span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">span</span><span class="p">:</span> <span class="n">Span</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="SimpleExportSpanProcessor.on_end"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.SimpleExportSpanProcessor.on_end">[docs]</a>    <span class="k">def</span> <span class="nf">on_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">span</span><span class="p">:</span> <span class="n">Span</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">attach</span><span class="p">(</span><span class="n">set_value</span><span class="p">(</span><span class="s2">&quot;suppress_instrumentation&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">span_exporter</span><span class="o">.</span><span class="n">export</span><span class="p">((</span><span class="n">span</span><span class="p">,))</span>
+        <span class="c1"># pylint: disable=broad-except</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Exception while exporting Span.&quot;</span><span class="p">)</span>
+        <span class="n">detach</span><span class="p">(</span><span class="n">token</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SimpleExportSpanProcessor.shutdown"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.SimpleExportSpanProcessor.shutdown">[docs]</a>    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">span_exporter</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SimpleExportSpanProcessor.force_flush"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.SimpleExportSpanProcessor.force_flush">[docs]</a>    <span class="k">def</span> <span class="nf">force_flush</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_millis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="c1"># pylint: disable=unused-argument</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+
+<div class="viewcode-block" id="BatchExportSpanProcessor"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.BatchExportSpanProcessor">[docs]</a><span class="k">class</span> <span class="nc">BatchExportSpanProcessor</span><span class="p">(</span><span class="n">SpanProcessor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Batch span processor implementation.</span>
+
+<span class="sd">    BatchExportSpanProcessor is an implementation of `SpanProcessor` that</span>
+<span class="sd">    batches ended spans and pushes them to the configured `SpanExporter`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_FLUSH_TOKEN_SPAN</span> <span class="o">=</span> <span class="n">DefaultSpan</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">span_exporter</span><span class="p">:</span> <span class="n">SpanExporter</span><span class="p">,</span>
+        <span class="n">max_queue_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">,</span>
+        <span class="n">schedule_delay_millis</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
+        <span class="n">max_export_batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="n">max_queue_size</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;max_queue_size must be a positive integer.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">schedule_delay_millis</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;schedule_delay_millis must be positive.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">max_export_batch_size</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;max_export_batch_size must be a positive integer.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">max_export_batch_size</span> <span class="o">&gt;</span> <span class="n">max_queue_size</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;max_export_batch_size must be less than and equal to max_export_batch_size.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">span_exporter</span> <span class="o">=</span> <span class="n">span_exporter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">(</span>
+            <span class="p">[],</span> <span class="n">max_queue_size</span>
+        <span class="p">)</span>  <span class="c1"># type: typing.Deque[Span]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">worker_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">worker</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">condition</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Condition</span><span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flush_condition</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Condition</span><span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">())</span>
+        <span class="c1"># flag to indicate that there is a flush operation on progress</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_flushing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schedule_delay_millis</span> <span class="o">=</span> <span class="n">schedule_delay_millis</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_export_batch_size</span> <span class="o">=</span> <span class="n">max_export_batch_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_queue_size</span> <span class="o">=</span> <span class="n">max_queue_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># flag that indicates that spans are being dropped</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_spans_dropped</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># precallocated list to send spans to exporter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spans_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="kc">None</span>
+        <span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_export_batch_size</span>  <span class="c1"># type: typing.List[typing.Optional[Span]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">worker_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<div class="viewcode-block" id="BatchExportSpanProcessor.on_start"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.BatchExportSpanProcessor.on_start">[docs]</a>    <span class="k">def</span> <span class="nf">on_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">span</span><span class="p">:</span> <span class="n">Span</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="BatchExportSpanProcessor.on_end"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.BatchExportSpanProcessor.on_end">[docs]</a>    <span class="k">def</span> <span class="nf">on_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">span</span><span class="p">:</span> <span class="n">Span</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Already shutdown, dropping span.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_queue_size</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_spans_dropped</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Queue is full, likely spans will be dropped.&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_spans_dropped</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="n">span</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_queue_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="o">.</span><span class="n">notify</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BatchExportSpanProcessor.worker"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.BatchExportSpanProcessor.worker">[docs]</a>    <span class="k">def</span> <span class="nf">worker</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule_delay_millis</span> <span class="o">/</span> <span class="mf">1e3</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_export_batch_size</span>
+                <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_flushing</span>
+            <span class="p">):</span>
+                <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">:</span>
+                        <span class="c1"># spurious notification, let&#39;s wait again</span>
+                        <span class="k">continue</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
+                        <span class="c1"># missing spans will be sent when calling flush</span>
+                        <span class="k">break</span>
+
+            <span class="c1"># substract the duration of this export call to the next timeout</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">time_ns</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">export</span><span class="p">()</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">time_ns</span><span class="p">()</span>
+            <span class="n">duration</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1e9</span>
+            <span class="n">timeout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule_delay_millis</span> <span class="o">/</span> <span class="mf">1e3</span> <span class="o">-</span> <span class="n">duration</span>
+
+        <span class="c1"># be sure that all spans are sent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_drain_queue</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BatchExportSpanProcessor.export"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.BatchExportSpanProcessor.export">[docs]</a>    <span class="k">def</span> <span class="nf">export</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Exports at most max_export_batch_size spans.&quot;&quot;&quot;</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">notify_flush</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># currently only a single thread acts as consumer, so queue.pop() will</span>
+        <span class="c1"># not raise an exception</span>
+        <span class="k">while</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_export_batch_size</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">:</span>
+            <span class="n">span</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">span</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">_FLUSH_TOKEN_SPAN</span><span class="p">:</span>
+                <span class="n">notify_flush</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">spans_list</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">span</span>
+                <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">attach</span><span class="p">(</span><span class="n">set_value</span><span class="p">(</span><span class="s2">&quot;suppress_instrumentation&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Ignore type b/c the Optional[None]+slicing is too &quot;clever&quot;</span>
+            <span class="c1"># for mypy</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">span_exporter</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spans_list</span><span class="p">[:</span><span class="n">idx</span><span class="p">])</span>  <span class="c1"># type: ignore</span>
+        <span class="c1"># pylint: disable=broad-except</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Exception while exporting Span batch.&quot;</span><span class="p">)</span>
+        <span class="n">detach</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">notify_flush</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">flush_condition</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">flush_condition</span><span class="o">.</span><span class="n">notify</span><span class="p">()</span>
+
+        <span class="c1"># clean up list</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">idx</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spans_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="k">def</span> <span class="nf">_drain_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;&quot;Export all elements until queue is empty.</span>
+
+<span class="sd">        Can only be called from the worker thread context because it invokes</span>
+<span class="sd">        `export` that is not thread safe.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">export</span><span class="p">()</span>
+
+<div class="viewcode-block" id="BatchExportSpanProcessor.force_flush"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.BatchExportSpanProcessor.force_flush">[docs]</a>    <span class="k">def</span> <span class="nf">force_flush</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout_millis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Already shutdown, ignoring call to force_flush().&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_flushing</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_FLUSH_TOKEN_SPAN</span><span class="p">)</span>
+
+        <span class="c1"># wake up worker thread</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="o">.</span><span class="n">notify_all</span><span class="p">()</span>
+
+        <span class="c1"># wait for token to be processed</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">flush_condition</span><span class="p">:</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flush_condition</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout_millis</span> <span class="o">/</span> <span class="mf">1e3</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_flushing</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Timeout was exceeded in force_flush().&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+<div class="viewcode-block" id="BatchExportSpanProcessor.shutdown"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.BatchExportSpanProcessor.shutdown">[docs]</a>    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># signal the worker thread to finish and then wait for it</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="o">.</span><span class="n">notify_all</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">worker_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">span_exporter</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span></div></div>
+
+
+<div class="viewcode-block" id="ConsoleSpanExporter"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.ConsoleSpanExporter">[docs]</a><span class="k">class</span> <span class="nc">ConsoleSpanExporter</span><span class="p">(</span><span class="n">SpanExporter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Implementation of :class:`SpanExporter` that prints spans to the</span>
+<span class="sd">    console.</span>
+
+<span class="sd">    This class can be used for diagnostic purposes. It prints the exported</span>
+<span class="sd">    spans to the console STDOUT.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">out</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">IO</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
+        <span class="n">formatter</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Span</span><span class="p">],</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">span</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">span</span><span class="p">)</span>
+        <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">formatter</span> <span class="o">=</span> <span class="n">formatter</span>
+
+<div class="viewcode-block" id="ConsoleSpanExporter.export"><a class="viewcode-back" href="../../../../sdk/trace.export.html#opentelemetry.sdk.trace.export.ConsoleSpanExporter.export">[docs]</a>    <span class="k">def</span> <span class="nf">export</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spans</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Span</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">SpanExportResult</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">span</span> <span class="ow">in</span> <span class="n">spans</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">formatter</span><span class="p">(</span><span class="n">span</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">SpanExportResult</span><span class="o">.</span><span class="n">SUCCESS</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

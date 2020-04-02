@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HTTP Integration Example &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Jaeger Exporter Example" href="../jaeger_exporter/README.html" />
+    <link rel="prev" title="Basic Tracer" href="../basic_tracer/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auto_instrumentation/auto_instrumentation.html">OpenTelemetry Python Autoinstrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/grpc/grpc.client_interceptor.html">grpc.client_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/grpc/grpc.server_interceptor.html">grpc.server_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/http_requests/http_requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/otcollector/otcollector.html">OpenTelemetry Collector Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic_tracer/README.html">Basic Tracer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">HTTP Integration Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-the-example">Run the Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#useful-links">Useful links</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../jaeger_exporter/README.html">Jaeger Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opentracing/README.html">OpenTracing Shim Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../otcollector-metrics/README.html">OT Collector Metrics Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../otcollector-tracer/README.html">OT Collector Tracer Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prometheus/README.html">Prometheus Metrics Exporter Example</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>HTTP Integration Example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/examples/http/README.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="http-integration-example">
+<h1>HTTP Integration Example<a class="headerlink" href="#http-integration-example" title="Permalink to this headline">¶</a></h1>
+<p>This example shows how to use
+<a class="reference internal" href="../../ext/wsgi/wsgi.html"><span class="doc">WSGI Middleware</span></a>
+and <a class="reference internal" href="../../ext/http_requests/http_requests.html"><span class="doc">requests</span></a> integrations to
+instrument an HTTP client and server in Python.</p>
+<p>The source files required to run this example are available <a class="reference external" href="https://github.com/open-telemetry/opentelemetry-python/blob/master/docs/examples/http/">here</a>.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install opentelemetry-api
+pip install opentelemetry-sdk
+pip install opentelemetry-ext-wsgi
+pip install opentelemetry-ext-http-requests
+pip install flask
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-the-example">
+<h2>Run the Example<a class="headerlink" href="#run-the-example" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Run the server</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python server.py
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run the client from a different terminal</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python client.py
+</pre></div>
+</div>
+<p>The output will be displayed in the console on the client side:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Span</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">SpanContext</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mh">0x7c5c0d62031570f00fd106d968139300</span><span class="p">,</span> <span class="n">span_id</span><span class="o">=</span><span class="mh">0x3703fd889dcdeb2b</span><span class="p">,</span> <span class="n">trace_state</span><span class="o">=</span><span class="p">{}),</span> <span class="n">kind</span><span class="o">=</span><span class="n">SpanKind</span><span class="o">.</span><span class="n">CLIENT</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">start_time</span><span class="o">=</span><span class="mi">2019</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">07</span><span class="n">T21</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mf">59.591634</span><span class="n">Z</span><span class="p">,</span> <span class="n">end_time</span><span class="o">=</span><span class="mi">2019</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">07</span><span class="n">T21</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mf">00.386014</span><span class="n">Z</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And on the server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span> <span class="o">-</span> <span class="o">-</span> <span class="p">[</span><span class="mi">07</span><span class="o">/</span><span class="n">Nov</span><span class="o">/</span><span class="mi">2019</span> <span class="mi">13</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">00</span><span class="p">]</span> <span class="s2">&quot;GET / HTTP/1.1&quot;</span> <span class="mi">200</span> <span class="o">-</span>
+<span class="n">Span</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;/wiki/Rabbit&quot;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">SpanContext</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mh">0x7c5c0d62031570f00fd106d968139300</span><span class="p">,</span> <span class="n">span_id</span><span class="o">=</span><span class="mh">0x4bf0be462b91d6ef</span><span class="p">,</span> <span class="n">trace_state</span><span class="o">=</span><span class="p">{}),</span> <span class="n">kind</span><span class="o">=</span><span class="n">SpanKind</span><span class="o">.</span><span class="n">CLIENT</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">Span</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;parent&quot;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">SpanContext</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mh">0x7c5c0d62031570f00fd106d968139300</span><span class="p">,</span> <span class="n">span_id</span><span class="o">=</span><span class="mh">0x68338643ccb2d53b</span><span class="p">,</span> <span class="n">trace_state</span><span class="o">=</span><span class="p">{})),</span> <span class="n">start_time</span><span class="o">=</span><span class="mi">2019</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">07</span><span class="n">T21</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mf">59.601597</span><span class="n">Z</span><span class="p">,</span> <span class="n">end_time</span><span class="o">=</span><span class="mi">2019</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">07</span><span class="n">T21</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mf">00.380491</span><span class="n">Z</span><span class="p">)</span>
+<span class="n">Span</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;parent&quot;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">SpanContext</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mh">0x7c5c0d62031570f00fd106d968139300</span><span class="p">,</span> <span class="n">span_id</span><span class="o">=</span><span class="mh">0x68338643ccb2d53b</span><span class="p">,</span> <span class="n">trace_state</span><span class="o">=</span><span class="p">{}),</span> <span class="n">kind</span><span class="o">=</span><span class="n">SpanKind</span><span class="o">.</span><span class="n">INTERNAL</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">Span</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">SpanContext</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mh">0x7c5c0d62031570f00fd106d968139300</span><span class="p">,</span> <span class="n">span_id</span><span class="o">=</span><span class="mh">0x36050ac596949bc1</span><span class="p">,</span> <span class="n">trace_state</span><span class="o">=</span><span class="p">{})),</span> <span class="n">start_time</span><span class="o">=</span><span class="mi">2019</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">07</span><span class="n">T21</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mf">59.601233</span><span class="n">Z</span><span class="p">,</span> <span class="n">end_time</span><span class="o">=</span><span class="mi">2019</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">07</span><span class="n">T21</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mf">00.384485</span><span class="n">Z</span><span class="p">)</span>
+<span class="n">Span</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">SpanContext</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mh">0x7c5c0d62031570f00fd106d968139300</span><span class="p">,</span> <span class="n">span_id</span><span class="o">=</span><span class="mh">0x36050ac596949bc1</span><span class="p">,</span> <span class="n">trace_state</span><span class="o">=</span><span class="p">{}),</span> <span class="n">kind</span><span class="o">=</span><span class="n">SpanKind</span><span class="o">.</span><span class="n">SERVER</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">SpanContext</span><span class="p">(</span><span class="n">trace_id</span><span class="o">=</span><span class="mh">0x7c5c0d62031570f00fd106d968139300</span><span class="p">,</span> <span class="n">span_id</span><span class="o">=</span><span class="mh">0x3703fd889dcdeb2b</span><span class="p">,</span> <span class="n">trace_state</span><span class="o">=</span><span class="p">{}),</span> <span class="n">start_time</span><span class="o">=</span><span class="mi">2019</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">07</span><span class="n">T21</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mf">59.600816</span><span class="n">Z</span><span class="p">,</span> <span class="n">end_time</span><span class="o">=</span><span class="mi">2019</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">07</span><span class="n">T21</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mf">00.385322</span><span class="n">Z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="useful-links">
+<h2>Useful links<a class="headerlink" href="#useful-links" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/open-telemetry/opentelemetry-python/">OpenTelemetry</a></p></li>
+<li><p><a class="reference internal" href="../../api/trace.html"><span class="doc">opentelemetry.trace package</span></a></p></li>
+<li><p><a class="reference internal" href="../../ext/wsgi/wsgi.html"><span class="doc">OpenTelemetry WSGI Middleware</span></a></p></li>
+<li><p><a class="reference internal" href="../../ext/http_requests/http_requests.html"><span class="doc">OpenTelemetry requests Integration</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../jaeger_exporter/README.html" class="btn btn-neutral float-right" title="Jaeger Exporter Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../basic_tracer/README.html" class="btn btn-neutral float-left" title="Basic Tracer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

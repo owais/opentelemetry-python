@@ -1,0 +1,411 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>opentelemetry.trace.status &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../auto_instrumentation/auto_instrumentation.html">OpenTelemetry Python Autoinstrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/grpc/grpc.client_interceptor.html">grpc.client_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/grpc/grpc.server_interceptor.html">grpc.server_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/http_requests/http_requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/otcollector/otcollector.html">OpenTelemetry Collector Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/basic_tracer/README.html">Basic Tracer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/http/README.html">HTTP Integration Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/jaeger_exporter/README.html">Jaeger Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/opentracing/README.html">OpenTracing Shim Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/otcollector-metrics/README.html">OT Collector Metrics Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/otcollector-tracer/README.html">OT Collector Tracer Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/prometheus/README.html">Prometheus Metrics Exporter Example</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../trace.html">opentelemetry.trace</a> &raquo;</li>
+        
+      <li>opentelemetry.trace.status</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for opentelemetry.trace.status</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright The OpenTelemetry Authors</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="kn">import</span> <span class="nn">enum</span>
+<span class="kn">import</span> <span class="nn">typing</span>
+
+
+<div class="viewcode-block" id="StatusCanonicalCode"><a class="viewcode-back" href="../../../api/trace.status.html#opentelemetry.trace.status.StatusCanonicalCode">[docs]</a><span class="k">class</span> <span class="nc">StatusCanonicalCode</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represents the canonical set of status codes of a finished Span.&quot;&quot;&quot;</span>
+
+    <span class="n">OK</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="sd">&quot;&quot;&quot;Not an error, returned on success.&quot;&quot;&quot;</span>
+
+    <span class="n">CANCELLED</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="sd">&quot;&quot;&quot;The operation was cancelled, typically by the caller.&quot;&quot;&quot;</span>
+
+    <span class="n">UNKNOWN</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="sd">&quot;&quot;&quot;Unknown error.</span>
+
+<span class="sd">    For example, this error may be returned when a Status value received from</span>
+<span class="sd">    another address space belongs to an error space that is not known in this</span>
+<span class="sd">    address space. Also errors raised by APIs that do not return enough error</span>
+<span class="sd">    information may be converted to this error.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">INVALID_ARGUMENT</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="sd">&quot;&quot;&quot;The client specified an invalid argument.</span>
+
+<span class="sd">    Note that this differs from FAILED_PRECONDITION. INVALID_ARGUMENT indicates</span>
+<span class="sd">    arguments that are problematic regardless of the state of the system (e.g.,</span>
+<span class="sd">    a malformed file name).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DEADLINE_EXCEEDED</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="sd">&quot;&quot;&quot;The deadline expired before the operation could complete.</span>
+
+<span class="sd">    For operations that change the state of the system, this error may be</span>
+<span class="sd">    returned even if the operation has completed successfully. For example, a</span>
+<span class="sd">    successful response from a server could have been delayed long</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">NOT_FOUND</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="sd">&quot;&quot;&quot;Some requested entity (e.g., file or directory) was not found.</span>
+
+<span class="sd">    Note to server developers: if a request is denied for an entire class of</span>
+<span class="sd">    users, such as gradual feature rollout or undocumented whitelist, NOT_FOUND</span>
+<span class="sd">    may be used. If a request is denied for some users within a class of users,</span>
+<span class="sd">    such as user-based access control, PERMISSION_DENIED must be used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ALREADY_EXISTS</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="sd">&quot;&quot;&quot;The entity that a client attempted to create (e.g., file or directory)</span>
+<span class="sd">    already exists.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">PERMISSION_DENIED</span> <span class="o">=</span> <span class="mi">7</span>
+    <span class="sd">&quot;&quot;&quot;The caller does not have permission to execute the specified operation.</span>
+
+<span class="sd">    PERMISSION_DENIED must not be used for rejections caused by exhausting some</span>
+<span class="sd">    resource (use RESOURCE_EXHAUSTED instead for those errors).</span>
+<span class="sd">    PERMISSION_DENIED must not be used if the caller can not be identified (use</span>
+<span class="sd">    UNAUTHENTICATED instead for those errors). This error code does not imply</span>
+<span class="sd">    the request is valid or the requested entity exists or satisfies other</span>
+<span class="sd">    pre-conditions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">RESOURCE_EXHAUSTED</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="sd">&quot;&quot;&quot;Some resource has been exhausted, perhaps a per-user quota, or perhaps</span>
+<span class="sd">    the entire file system is out of space.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">FAILED_PRECONDITION</span> <span class="o">=</span> <span class="mi">9</span>
+    <span class="sd">&quot;&quot;&quot;The operation was rejected because the system is not in a state required</span>
+<span class="sd">    for the operation&#39;s execution.</span>
+
+<span class="sd">    For example, the directory to be deleted is non-empty, an rmdir operation</span>
+<span class="sd">    is applied to a non-directory, etc. Service implementors can use the</span>
+<span class="sd">    following guidelines to decide between FAILED_PRECONDITION, ABORTED, and</span>
+<span class="sd">    UNAVAILABLE:</span>
+
+<span class="sd">        (a) Use UNAVAILABLE if the client can retry just the failing call.</span>
+<span class="sd">        (b) Use ABORTED if the client should retry at a higher level (e.g.,</span>
+<span class="sd">            when a client-specified test-and-set fails, indicating the client</span>
+<span class="sd">            should restart a read-modify-write sequence).</span>
+<span class="sd">        (c) Use FAILED_PRECONDITION if the client should not retry until the</span>
+<span class="sd">            system state has been explicitly fixed.</span>
+
+<span class="sd">    E.g., if an &quot;rmdir&quot; fails because the directory is non-empty,</span>
+<span class="sd">    FAILED_PRECONDITION should be returned since the client should not retry</span>
+<span class="sd">    unless the files are deleted from the directory.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ABORTED</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="sd">&quot;&quot;&quot;The operation was aborted, typically due to a concurrency issue such as a</span>
+<span class="sd">    sequencer check failure or transaction abort.</span>
+
+<span class="sd">    See the guidelines above for deciding between FAILED_PRECONDITION, ABORTED,</span>
+<span class="sd">    and UNAVAILABLE.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">OUT_OF_RANGE</span> <span class="o">=</span> <span class="mi">11</span>
+    <span class="sd">&quot;&quot;&quot;The operation was attempted past the valid range.</span>
+
+<span class="sd">    E.g., seeking or reading past end-of-file. Unlike INVALID_ARGUMENT, this</span>
+<span class="sd">    error indicates a problem that may be fixed if the system state changes.</span>
+<span class="sd">    For example, a 32-bit file system will generate INVALID_ARGUMENT if asked</span>
+<span class="sd">    to read at an offset that is not in the range [0,2^32-1],but it will</span>
+<span class="sd">    generate OUT_OF_RANGE if asked to read from an offset past the current file</span>
+<span class="sd">    size. There is a fair bit of overlap between FAILED_PRECONDITION and</span>
+<span class="sd">    OUT_OF_RANGE. We recommend using OUT_OF_RANGE (the more specific error)</span>
+<span class="sd">    when it applies so that callers who are iterating through a space can</span>
+<span class="sd">    easily look for an OUT_OF_RANGE error to detect when they are done.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">UNIMPLEMENTED</span> <span class="o">=</span> <span class="mi">12</span>
+    <span class="sd">&quot;&quot;&quot;The operation is not implemented or is not supported/enabled in this</span>
+<span class="sd">    service.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">INTERNAL</span> <span class="o">=</span> <span class="mi">13</span>
+    <span class="sd">&quot;&quot;&quot;Internal errors.</span>
+
+<span class="sd">    This means that some invariants expected by the underlying system have been</span>
+<span class="sd">    broken. This error code is reserved for serious errors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">UNAVAILABLE</span> <span class="o">=</span> <span class="mi">14</span>
+    <span class="sd">&quot;&quot;&quot;The service is currently unavailable.</span>
+
+<span class="sd">    This is most likely a transient condition, which can be corrected by</span>
+<span class="sd">    retrying with a backoff.  Note that it is not always safe to retry</span>
+<span class="sd">    non-idempotent operations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DATA_LOSS</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="sd">&quot;&quot;&quot;Unrecoverable data loss or corruption.&quot;&quot;&quot;</span>
+
+    <span class="n">UNAUTHENTICATED</span> <span class="o">=</span> <span class="mi">16</span>
+    <span class="sd">&quot;&quot;&quot;The request does not have valid authentication credentials for the</span>
+<span class="sd">    operation.</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="Status"><a class="viewcode-back" href="../../../api/trace.status.html#opentelemetry.trace.status.Status">[docs]</a><span class="k">class</span> <span class="nc">Status</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Represents the status of a finished Span.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        canonical_code: The canonical status code that describes the result</span>
+<span class="sd">            status of the operation.</span>
+<span class="sd">        description: An optional description of the status.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">canonical_code</span><span class="p">:</span> <span class="n">StatusCanonicalCode</span> <span class="o">=</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">OK</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_canonical_code</span> <span class="o">=</span> <span class="n">canonical_code</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_description</span> <span class="o">=</span> <span class="n">description</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">canonical_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatusCanonicalCode</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Represents the canonical status code of a finished Span.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_canonical_code</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">description</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Status description&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_description</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_ok</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns false if this represents an error, true otherwise.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_canonical_code</span> <span class="ow">is</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">OK</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

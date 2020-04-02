@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OpenTelemetry Database API Integration &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="OpenTelemetry Flask Integration" href="../flask/flask.html" />
+    <link rel="prev" title="opentelemetry.auto_instrumentation.instrumentor package" href="../../auto_instrumentation/instrumentor.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auto_instrumentation/auto_instrumentation.html">OpenTelemetry Python Autoinstrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">OpenTelemetry Database API Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grpc/grpc.client_interceptor.html">grpc.client_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grpc/grpc.server_interceptor.html">grpc.server_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../http_requests/http_requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../otcollector/otcollector.html">OpenTelemetry Collector Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/basic_tracer/README.html">Basic Tracer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/http/README.html">HTTP Integration Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/jaeger_exporter/README.html">Jaeger Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/opentracing/README.html">OpenTracing Shim Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/otcollector-metrics/README.html">OT Collector Metrics Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/otcollector-tracer/README.html">OT Collector Tracer Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/prometheus/README.html">Prometheus Metrics Exporter Example</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>OpenTelemetry Database API Integration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/ext/dbapi/dbapi.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-opentelemetry.ext.dbapi">
+<span id="opentelemetry-database-api-integration"></span><h1>OpenTelemetry Database API Integration<a class="headerlink" href="#module-opentelemetry.ext.dbapi" title="Permalink to this headline">¶</a></h1>
+<p>The trace integration with Database API supports libraries following the
+<a class="reference external" href="https://www.python.org/dev/peps/pep-0249/">Python Database API Specification v2.0.</a></p>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mysql.connector</span>
+<span class="kn">import</span> <span class="nn">pyodbc</span>
+
+<span class="kn">from</span> <span class="nn">opentelemetry.ext.dbapi</span> <span class="kn">import</span> <span class="n">trace_integration</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.trace</span> <span class="kn">import</span> <span class="n">TracerProvider</span>
+
+<span class="n">trace</span><span class="o">.</span><span class="n">set_tracer_provider</span><span class="p">(</span><span class="n">TracerProvider</span><span class="p">())</span>
+<span class="n">tracer</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">get_tracer</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="c1"># Ex: mysql.connector</span>
+<span class="n">trace_integration</span><span class="p">(</span><span class="n">tracer</span><span class="p">,</span> <span class="n">mysql</span><span class="o">.</span><span class="n">connector</span><span class="p">,</span> <span class="s2">&quot;connect&quot;</span><span class="p">,</span> <span class="s2">&quot;mysql&quot;</span><span class="p">,</span> <span class="s2">&quot;sql&quot;</span><span class="p">)</span>
+<span class="c1"># Ex: pyodbc</span>
+<span class="n">trace_integration</span><span class="p">(</span><span class="n">tracer</span><span class="p">,</span> <span class="n">pyodbc</span><span class="p">,</span> <span class="s2">&quot;Connection&quot;</span><span class="p">,</span> <span class="s2">&quot;odbc&quot;</span><span class="p">,</span> <span class="s2">&quot;sql&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="opentelemetry.ext.dbapi.trace_integration">
+<code class="sig-prename descclassname">opentelemetry.ext.dbapi.</code><code class="sig-name descname">trace_integration</code><span class="sig-paren">(</span><em class="sig-param">tracer</em>, <em class="sig-param">connect_module</em>, <em class="sig-param">connect_method_name</em>, <em class="sig-param">database_component</em>, <em class="sig-param">database_type=''</em>, <em class="sig-param">connection_attributes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/dbapi.html#trace_integration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.dbapi.trace_integration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Integrate with DB API library.
+<a class="reference external" href="https://www.python.org/dev/peps/pep-0249/">https://www.python.org/dev/peps/pep-0249/</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tracer</strong> (<a class="reference internal" href="../../api/trace.html#opentelemetry.trace.Tracer" title="opentelemetry.trace.Tracer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tracer</span></code></a>) – The <code class="xref py py-class docutils literal notranslate"><span class="pre">Tracer</span></code> to use.</p></li>
+<li><p><strong>connect_module</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>[…, <code class="xref py py-class docutils literal notranslate"><span class="pre">any</span></code>]) – Module name where connect method is available.</p></li>
+<li><p><strong>connect_method_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The connect method name.</p></li>
+<li><p><strong>database_component</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Database driver name or database name “JDBI”, “jdbc”, “odbc”, “postgreSQL”.</p></li>
+<li><p><strong>database_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The Database type. For any SQL database, “sql”.</p></li>
+<li><p><strong>connection_attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>]) – Attribute names for database, port, host and user in Connection object.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="opentelemetry.ext.dbapi.DatabaseApiIntegration">
+<em class="property">class </em><code class="sig-prename descclassname">opentelemetry.ext.dbapi.</code><code class="sig-name descname">DatabaseApiIntegration</code><span class="sig-paren">(</span><em class="sig-param">tracer</em>, <em class="sig-param">database_component</em>, <em class="sig-param">database_type='sql'</em>, <em class="sig-param">connection_attributes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/dbapi.html#DatabaseApiIntegration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.dbapi.DatabaseApiIntegration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="opentelemetry.ext.dbapi.DatabaseApiIntegration.wrapped_connection">
+<code class="sig-name descname">wrapped_connection</code><span class="sig-paren">(</span><em class="sig-param">connect_method</em>, <em class="sig-param">args</em>, <em class="sig-param">kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/dbapi.html#DatabaseApiIntegration.wrapped_connection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.dbapi.DatabaseApiIntegration.wrapped_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add object proxy to connection object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.ext.dbapi.DatabaseApiIntegration.get_connection_attributes">
+<code class="sig-name descname">get_connection_attributes</code><span class="sig-paren">(</span><em class="sig-param">connection</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/dbapi.html#DatabaseApiIntegration.get_connection_attributes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.dbapi.DatabaseApiIntegration.get_connection_attributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opentelemetry.ext.dbapi.TracedConnectionProxy">
+<em class="property">class </em><code class="sig-prename descclassname">opentelemetry.ext.dbapi.</code><code class="sig-name descname">TracedConnectionProxy</code><span class="sig-paren">(</span><em class="sig-param">connection</em>, <em class="sig-param">db_api_integration</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/dbapi.html#TracedConnectionProxy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.dbapi.TracedConnectionProxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectProxy</span></code></p>
+<dl class="method">
+<dt id="opentelemetry.ext.dbapi.TracedConnectionProxy.cursor">
+<code class="sig-name descname">cursor</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/dbapi.html#TracedConnectionProxy.cursor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.dbapi.TracedConnectionProxy.cursor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opentelemetry.ext.dbapi.TracedCursor">
+<em class="property">class </em><code class="sig-prename descclassname">opentelemetry.ext.dbapi.</code><code class="sig-name descname">TracedCursor</code><span class="sig-paren">(</span><em class="sig-param">db_api_integration</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/dbapi.html#TracedCursor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.dbapi.TracedCursor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="opentelemetry.ext.dbapi.TracedCursor.traced_execution">
+<code class="sig-name descname">traced_execution</code><span class="sig-paren">(</span><em class="sig-param">query_method</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/dbapi.html#TracedCursor.traced_execution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.dbapi.TracedCursor.traced_execution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opentelemetry.ext.dbapi.TracedCursorProxy">
+<em class="property">class </em><code class="sig-prename descclassname">opentelemetry.ext.dbapi.</code><code class="sig-name descname">TracedCursorProxy</code><span class="sig-paren">(</span><em class="sig-param">cursor</em>, <em class="sig-param">db_api_integration</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/dbapi.html#TracedCursorProxy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.dbapi.TracedCursorProxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectProxy</span></code></p>
+<dl class="method">
+<dt id="opentelemetry.ext.dbapi.TracedCursorProxy.execute">
+<code class="sig-name descname">execute</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/dbapi.html#TracedCursorProxy.execute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.dbapi.TracedCursorProxy.execute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.ext.dbapi.TracedCursorProxy.executemany">
+<code class="sig-name descname">executemany</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/dbapi.html#TracedCursorProxy.executemany"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.dbapi.TracedCursorProxy.executemany" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="opentelemetry.ext.dbapi.TracedCursorProxy.callproc">
+<code class="sig-name descname">callproc</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opentelemetry/ext/dbapi.html#TracedCursorProxy.callproc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#opentelemetry.ext.dbapi.TracedCursorProxy.callproc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../flask/flask.html" class="btn btn-neutral float-right" title="OpenTelemetry Flask Integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../auto_instrumentation/instrumentor.html" class="btn btn-neutral float-left" title="opentelemetry.auto_instrumentation.instrumentor package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

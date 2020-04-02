@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>opentelemetry.sdk.metrics.export.batcher &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../auto_instrumentation/auto_instrumentation.html">OpenTelemetry Python Autoinstrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../ext/dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../ext/flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../ext/grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../ext/grpc/grpc.client_interceptor.html">grpc.client_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../ext/grpc/grpc.server_interceptor.html">grpc.server_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../ext/http_requests/http_requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../ext/jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../ext/mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../ext/opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../ext/otcollector/otcollector.html">OpenTelemetry Collector Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../ext/prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../ext/psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../ext/pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../ext/wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../ext/zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/basic_tracer/README.html">Basic Tracer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/http/README.html">HTTP Integration Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/jaeger_exporter/README.html">Jaeger Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/opentracing/README.html">OpenTracing Shim Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/otcollector-metrics/README.html">OT Collector Metrics Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/otcollector-tracer/README.html">OT Collector Tracer Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/prometheus/README.html">Prometheus Metrics Exporter Example</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../metrics.html">opentelemetry.sdk.metrics</a> &raquo;</li>
+        
+          <li><a href="../export.html">opentelemetry.sdk.metrics.export</a> &raquo;</li>
+        
+      <li>opentelemetry.sdk.metrics.export.batcher</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for opentelemetry.sdk.metrics.export.batcher</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright The OpenTelemetry Authors</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Type</span>
+
+<span class="kn">from</span> <span class="nn">opentelemetry.metrics</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">Measure</span><span class="p">,</span> <span class="n">MetricT</span><span class="p">,</span> <span class="n">Observer</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.metrics.export</span> <span class="kn">import</span> <span class="n">MetricRecord</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.metrics.export.aggregate</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Aggregator</span><span class="p">,</span>
+    <span class="n">CounterAggregator</span><span class="p">,</span>
+    <span class="n">MinMaxSumCountAggregator</span><span class="p">,</span>
+    <span class="n">ObserverAggregator</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="Batcher"><a class="viewcode-back" href="../../../../../sdk/metrics.export.batcher.html#opentelemetry.sdk.metrics.export.batcher.Batcher">[docs]</a><span class="k">class</span> <span class="nc">Batcher</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for all batcher types.</span>
+
+<span class="sd">    The batcher is responsible for storing the aggregators and aggregated</span>
+<span class="sd">    values received from updates from metrics in the meter. The stored values</span>
+<span class="sd">    will be sent to an exporter for exporting.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stateful</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_batch_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># stateful=True indicates the batcher computes checkpoints from over</span>
+        <span class="c1"># the process lifetime. False indicates the batcher computes</span>
+        <span class="c1"># checkpoints which describe the updates of a single collection period</span>
+        <span class="c1"># (deltas)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stateful</span> <span class="o">=</span> <span class="n">stateful</span>
+
+<div class="viewcode-block" id="Batcher.aggregator_for"><a class="viewcode-back" href="../../../../../sdk/metrics.export.batcher.html#opentelemetry.sdk.metrics.export.batcher.Batcher.aggregator_for">[docs]</a>    <span class="k">def</span> <span class="nf">aggregator_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metric_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">MetricT</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Aggregator</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns an aggregator based on metric type.</span>
+
+<span class="sd">        Aggregators keep track of and updates values when metrics get updated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># pylint:disable=R0201</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">metric_type</span><span class="p">,</span> <span class="n">Counter</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">CounterAggregator</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">metric_type</span><span class="p">,</span> <span class="n">Measure</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">MinMaxSumCountAggregator</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">metric_type</span><span class="p">,</span> <span class="n">Observer</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">ObserverAggregator</span><span class="p">()</span>
+        <span class="c1"># TODO: Add other aggregators</span>
+        <span class="k">return</span> <span class="n">CounterAggregator</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Batcher.checkpoint_set"><a class="viewcode-back" href="../../../../../sdk/metrics.export.batcher.html#opentelemetry.sdk.metrics.export.batcher.Batcher.checkpoint_set">[docs]</a>    <span class="k">def</span> <span class="nf">checkpoint_set</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">MetricRecord</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of MetricRecords used for exporting.</span>
+
+<span class="sd">        The list of MetricRecords is a snapshot created from the current</span>
+<span class="sd">        data in all of the aggregators in this batcher.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">metric_records</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">metric</span><span class="p">,</span> <span class="n">labels</span><span class="p">),</span> <span class="n">aggregator</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_batch_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">metric_records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MetricRecord</span><span class="p">(</span><span class="n">aggregator</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">metric</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">metric_records</span></div>
+
+<div class="viewcode-block" id="Batcher.finished_collection"><a class="viewcode-back" href="../../../../../sdk/metrics.export.batcher.html#opentelemetry.sdk.metrics.export.batcher.Batcher.finished_collection">[docs]</a>    <span class="k">def</span> <span class="nf">finished_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Performs certain post-export logic.</span>
+
+<span class="sd">        For batchers that are stateless, resets the batch map.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">stateful</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_batch_map</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+<div class="viewcode-block" id="Batcher.process"><a class="viewcode-back" href="../../../../../sdk/metrics.export.batcher.html#opentelemetry.sdk.metrics.export.batcher.Batcher.process">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Stores record information to be ready for exporting.</span>
+
+<span class="sd">        Depending on type of batcher, performs pre-export logic, such as</span>
+<span class="sd">        filtering records based off of keys.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div></div>
+
+
+<div class="viewcode-block" id="UngroupedBatcher"><a class="viewcode-back" href="../../../../../sdk/metrics.export.batcher.html#opentelemetry.sdk.metrics.export.batcher.UngroupedBatcher">[docs]</a><span class="k">class</span> <span class="nc">UngroupedBatcher</span><span class="p">(</span><span class="n">Batcher</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Accepts all records and passes them for exporting&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="UngroupedBatcher.process"><a class="viewcode-back" href="../../../../../sdk/metrics.export.batcher.html#opentelemetry.sdk.metrics.export.batcher.UngroupedBatcher.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="c1"># Checkpoints the current aggregator value to be collected for export</span>
+        <span class="n">record</span><span class="o">.</span><span class="n">aggregator</span><span class="o">.</span><span class="n">take_checkpoint</span><span class="p">()</span>
+        <span class="n">batch_key</span> <span class="o">=</span> <span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">metric</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
+        <span class="n">batch_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_batch_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">batch_key</span><span class="p">)</span>
+        <span class="n">aggregator</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">aggregator</span>
+        <span class="k">if</span> <span class="n">batch_value</span><span class="p">:</span>
+            <span class="c1"># Update the stored checkpointed value if exists. The call to merge</span>
+            <span class="c1"># here combines only identical records (same key).</span>
+            <span class="n">batch_value</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">aggregator</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stateful</span><span class="p">:</span>
+            <span class="c1"># if stateful batcher, create a copy of the aggregator and update</span>
+            <span class="c1"># it with the current checkpointed value for long-term storage</span>
+            <span class="n">aggregator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregator_for</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">metric</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+            <span class="n">aggregator</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">aggregator</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_batch_map</span><span class="p">[</span><span class="n">batch_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">aggregator</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

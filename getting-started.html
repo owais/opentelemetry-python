@@ -1,0 +1,650 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting Started with OpenTelemetry Python &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="OpenTelemetry Python API" href="api/api.html" />
+    <link rel="prev" title="OpenTelemetry-Python" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started with OpenTelemetry Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hello-world-emitting-a-trace-to-your-console">Hello world: emitting a trace to your console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-exporters-to-emit-spans-elsewhere">Configure exporters to emit spans elsewhere</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#integrations-example-with-flask">Integrations example with Flask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-metrics">Adding Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-prometheus">Using Prometheus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-opentelemetry-collector-for-traces-and-metrics">Using the OpenTelemetry Collector for traces and metrics</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto_instrumentation/auto_instrumentation.html">OpenTelemetry Python Autoinstrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ext/dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/grpc/grpc.client_interceptor.html">grpc.client_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/grpc/grpc.server_interceptor.html">grpc.server_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/http_requests/http_requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/otcollector/otcollector.html">OpenTelemetry Collector Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/basic_tracer/README.html">Basic Tracer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/http/README.html">HTTP Integration Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/jaeger_exporter/README.html">Jaeger Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/opentracing/README.html">OpenTracing Shim Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/otcollector-metrics/README.html">OT Collector Metrics Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/otcollector-tracer/README.html">OT Collector Tracer Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/prometheus/README.html">Prometheus Metrics Exporter Example</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Getting Started with OpenTelemetry Python</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/getting-started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started-with-opentelemetry-python">
+<h1>Getting Started with OpenTelemetry Python<a class="headerlink" href="#getting-started-with-opentelemetry-python" title="Permalink to this headline">¶</a></h1>
+<p>This guide will walk you through instrumenting a Python application with <code class="docutils literal notranslate"><span class="pre">opentelemetry-python</span></code>.</p>
+<p>For more elaborate examples, see <a class="reference internal" href="index.html#examples"><span class="std std-ref">Examples</span></a>.</p>
+<div class="section" id="hello-world-emitting-a-trace-to-your-console">
+<h2>Hello world: emitting a trace to your console<a class="headerlink" href="#hello-world-emitting-a-trace-to-your-console" title="Permalink to this headline">¶</a></h2>
+<p>To get started, install both the opentelemetry API and SDK:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install opentelemetry-api
+pip install opentelemetry-sdk
+</pre></div>
+</div>
+<p>The API package provides the interfaces required by the application owner, as well
+as some helper logic to load implementations.</p>
+<p>The SDK provides an implementation of those interfaces, designed to be generic and extensible enough
+that in many situations, the SDK will be sufficient.</p>
+<p>Once installed, we can now utilize the packages to emit spans from your application. A span
+represents an action within your application that you want to instrument, such as an HTTP request
+or a database call. Once instrumented, the application owner can extract helpful information such as
+how long the action took, or add arbitrary attributes to the span that may provide more insight for debugging.</p>
+<p>Here’s an example of a script that emits a trace containing three named spans: “foo”, “bar”, and “baz”:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># tracing.py</span>
+<span class="kn">from</span> <span class="nn">opentelemetry</span> <span class="kn">import</span> <span class="n">trace</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace</span> <span class="kn">import</span> <span class="n">TracerProvider</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace.export</span> <span class="kn">import</span> <span class="n">ConsoleSpanExporter</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace.export</span> <span class="kn">import</span> <span class="n">SimpleExportSpanProcessor</span>
+
+<span class="n">trace</span><span class="o">.</span><span class="n">set_tracer_provider</span><span class="p">(</span><span class="n">TracerProvider</span><span class="p">())</span>
+<span class="n">trace</span><span class="o">.</span><span class="n">get_tracer_provider</span><span class="p">()</span><span class="o">.</span><span class="n">add_span_processor</span><span class="p">(</span>
+    <span class="n">SimpleExportSpanProcessor</span><span class="p">(</span><span class="n">ConsoleSpanExporter</span><span class="p">())</span>
+<span class="p">)</span>
+<span class="n">tracer</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">get_tracer</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">start_as_current_span</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">start_as_current_span</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">start_as_current_span</span><span class="p">(</span><span class="s1">&#39;baz&#39;</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world from OpenTelemetry Python!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can run it, and see the traces print to your console:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ python tracing.py
+Hello world from OpenTelemetry Python!
+Span<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;baz&quot;</span>,
+     <span class="nv">context</span><span class="o">=</span>SpanContext<span class="o">(</span><span class="nv">trace_id</span><span class="o">=</span>0x37c1b154d9ab5a4b94b0046484b90400,
+                         <span class="nv">span_id</span><span class="o">=</span>0xfacbb82a4d0cf5dd,
+                         <span class="nv">trace_state</span><span class="o">={}</span>
+     <span class="o">)</span>,
+     <span class="nv">kind</span><span class="o">=</span>SpanKind.INTERNAL,
+     <span class="nv">parent</span><span class="o">=</span>Span<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span>,
+                 <span class="nv">context</span><span class="o">=</span>SpanContext<span class="o">(</span><span class="nv">trace_id</span><span class="o">=</span>0x37c1b154d9ab5a4b94b0046484b90400,
+                                     <span class="nv">span_id</span><span class="o">=</span>0xb1894e8d588f5f62,
+                                     <span class="nv">trace_state</span><span class="o">={})</span>
+     <span class="o">)</span>,
+     <span class="nv">start_time</span><span class="o">=</span><span class="m">2020</span>-03-15T05:12:08.345394Z,
+     <span class="nv">end_time</span><span class="o">=</span><span class="m">2020</span>-03-15T05:12:08.345450Z
+ <span class="o">)</span>
+Span<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span>,
+     <span class="nv">context</span><span class="o">=</span>SpanContext<span class="o">(</span><span class="nv">trace_id</span><span class="o">=</span>0x37c1b154d9ab5a4b94b0046484b90400,
+                         <span class="nv">span_id</span><span class="o">=</span>0xb1894e8d588f5f62,
+                         <span class="nv">trace_state</span><span class="o">={}</span>
+     <span class="o">)</span>,
+     <span class="nv">kind</span><span class="o">=</span>SpanKind.INTERNAL,
+     <span class="nv">parent</span><span class="o">=</span>Span<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span>,
+                 <span class="nv">context</span><span class="o">=</span>SpanContext<span class="o">(</span><span class="nv">trace_id</span><span class="o">=</span>0x37c1b154d9ab5a4b94b0046484b90400,
+                                     <span class="nv">span_id</span><span class="o">=</span>0xde5ea23d6a9e4180,
+                                     <span class="nv">trace_state</span><span class="o">={})</span>
+     <span class="o">)</span>,
+     <span class="nv">start_time</span><span class="o">=</span><span class="m">2020</span>-03-15T05:12:08.345360Z,
+     <span class="nv">end_time</span><span class="o">=</span><span class="m">2020</span>-03-15T05:12:08.345597Z
+<span class="o">)</span>
+Span<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span>,
+     <span class="nv">context</span><span class="o">=</span>SpanContext<span class="o">(</span><span class="nv">trace_id</span><span class="o">=</span>0x37c1b154d9ab5a4b94b0046484b90400,
+                         <span class="nv">span_id</span><span class="o">=</span>0xde5ea23d6a9e4180,
+                         <span class="nv">trace_state</span><span class="o">={}</span>
+     <span class="o">)</span>,
+     <span class="nv">kind</span><span class="o">=</span>SpanKind.INTERNAL,
+     <span class="nv">parent</span><span class="o">=</span>None,
+     <span class="nv">start_time</span><span class="o">=</span><span class="m">2020</span>-03-15T05:12:08.345287Z,
+     <span class="nv">end_time</span><span class="o">=</span><span class="m">2020</span>-03-15T05:12:08.345673Z
+<span class="o">)</span>
+</pre></div>
+</div>
+<p>Each span typically represents a single operation or unit of work.
+Spans can be nested, and have a parent-child relationship with other spans.
+While a given span is active, newly-created spans will inherit the active span’s trace ID, options, and other attributes of its context.
+A span without a parent is called the “root span”, and a trace is comprised of one root span and its descendants.</p>
+<p>In the example above, the OpenTelemetry Python library creates one trace containing three spans and prints it to STDOUT.</p>
+</div>
+<div class="section" id="configure-exporters-to-emit-spans-elsewhere">
+<h2>Configure exporters to emit spans elsewhere<a class="headerlink" href="#configure-exporters-to-emit-spans-elsewhere" title="Permalink to this headline">¶</a></h2>
+<p>The example above does emit information about all spans, but the output is a bit hard to read.
+In common cases, you would instead <em>export</em> this data to an application performance monitoring backend, to be visualized and queried.
+It is also common to aggregate span and trace information from multiple services into a single database, so that actions that require multiple services can still all be visualized together.</p>
+<p>This concept is known as distributed tracing. One such distributed tracing backend is known as Jaeger.</p>
+<p>The Jaeger project provides an all-in-one docker container that provides a UI, database, and consumer. Let’s bring
+it up now:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker run -p <span class="m">16686</span>:16686 -p <span class="m">6831</span>:6831/udp jaegertracing/all-in-one
+</pre></div>
+</div>
+<p>This will start Jaeger on port 16686 locally, and expose Jaeger thrift agent on port 6831. You can visit it at <a class="reference external" href="http://localhost:16686">http://localhost:16686</a>.</p>
+<p>With this backend up, your application will now need to export traces to this system. <code class="docutils literal notranslate"><span class="pre">opentelemetry-sdk</span></code> does not provide an exporter
+for Jaeger, but you can install that as a separate package:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install opentelemetry-ext-jaeger
+</pre></div>
+</div>
+<p>Once installed, update your code to import the Jaeger exporter, and use that instead:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># jaeger-example.py</span>
+<span class="kn">from</span> <span class="nn">opentelemetry</span> <span class="kn">import</span> <span class="n">trace</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.ext</span> <span class="kn">import</span> <span class="n">jaeger</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace</span> <span class="kn">import</span> <span class="n">TracerProvider</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace.export</span> <span class="kn">import</span> <span class="n">SimpleExportSpanProcessor</span>
+
+<span class="n">trace</span><span class="o">.</span><span class="n">set_tracer_provider</span><span class="p">(</span><span class="n">TracerProvider</span><span class="p">())</span>
+
+<span class="n">jaeger_exporter</span> <span class="o">=</span> <span class="n">jaeger</span><span class="o">.</span><span class="n">JaegerSpanExporter</span><span class="p">(</span>
+    <span class="n">service_name</span><span class="o">=</span><span class="s2">&quot;my-helloworld-service&quot;</span><span class="p">,</span> <span class="n">agent_host_name</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">agent_port</span><span class="o">=</span><span class="mi">6831</span>
+<span class="p">)</span>
+
+<span class="n">trace</span><span class="o">.</span><span class="n">get_tracer_provider</span><span class="p">()</span><span class="o">.</span><span class="n">add_span_processor</span><span class="p">(</span>
+    <span class="n">SimpleExportSpanProcessor</span><span class="p">(</span><span class="n">jaeger_exporter</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">tracer</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">get_tracer</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">start_as_current_span</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">start_as_current_span</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">start_as_current_span</span><span class="p">(</span><span class="s1">&#39;baz&#39;</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world from OpenTelemetry Python!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Run the script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">jaeger</span><span class="o">-</span><span class="n">example</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>You can then visit the jaeger UI, see you service under “services”, and find your traces!</p>
+<img alt="_images/jaeger_trace.png" src="_images/jaeger_trace.png" />
+</div>
+<div class="section" id="integrations-example-with-flask">
+<h2>Integrations example with Flask<a class="headerlink" href="#integrations-example-with-flask" title="Permalink to this headline">¶</a></h2>
+<p>The above is a great example, but it’s very manual. Within the telemetry space, there are common actions that one wants to instrument:</p>
+<ul class="simple">
+<li><p>HTTP responses from web services</p></li>
+<li><p>HTTP requests from clients</p></li>
+<li><p>Database calls</p></li>
+</ul>
+<p>To help instrument common scenarios, opentelemetry also has the concept of “instrumentations”: packages that are designed to interface
+with a specific framework or library, such as Flask and psycopg2. A list of the currently curated extension packages can be found <a class="reference external" href="https://github.com/open-telemetry/opentelemetry-python/blob/master/ext/">here</a>.</p>
+<p>We will now instrument a basic Flask application that uses the requests library to send HTTP requests. First, install the instrumentation packages themselves:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install opentelemetry-ext-flask
+pip install opentelemetry-ext-http-requests
+</pre></div>
+</div>
+<p>And let’s write a small Flask application that sends an HTTP request, activating each instrumentation during the initialization:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># flask_example.py</span>
+<span class="kn">import</span> <span class="nn">flask</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="kn">import</span> <span class="nn">opentelemetry.ext.http_requests</span>
+<span class="kn">from</span> <span class="nn">opentelemetry</span> <span class="kn">import</span> <span class="n">trace</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.ext.flask</span> <span class="kn">import</span> <span class="n">instrument_app</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace</span> <span class="kn">import</span> <span class="n">TracerProvider</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace.export</span> <span class="kn">import</span> <span class="n">ConsoleSpanExporter</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace.export</span> <span class="kn">import</span> <span class="n">SimpleExportSpanProcessor</span>
+
+<span class="n">trace</span><span class="o">.</span><span class="n">set_tracer_provider</span><span class="p">(</span><span class="n">TracerProvider</span><span class="p">())</span>
+<span class="n">trace</span><span class="o">.</span><span class="n">get_tracer_provider</span><span class="p">()</span><span class="o">.</span><span class="n">add_span_processor</span><span class="p">(</span>
+    <span class="n">SimpleExportSpanProcessor</span><span class="p">(</span><span class="n">ConsoleSpanExporter</span><span class="p">())</span>
+<span class="p">)</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">flask</span><span class="o">.</span><span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">opentelemetry</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">http_requests</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="n">trace</span><span class="o">.</span><span class="n">get_tracer_provider</span><span class="p">())</span>
+<span class="n">instrument_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="n">tracer</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">get_tracer</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">start_as_current_span</span><span class="p">(</span><span class="s2">&quot;example-request&quot;</span><span class="p">):</span>
+        <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.example.com&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;hello&quot;</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now run the above script, hit the root url (<a class="reference external" href="http://localhost:5000/">http://localhost:5000/</a>) a few times, and watch your spans be emitted!</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python flask_example.py
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-metrics">
+<h2>Adding Metrics<a class="headerlink" href="#adding-metrics" title="Permalink to this headline">¶</a></h2>
+<p>Spans are a great way to get detailed information about what your application is doing, but
+what about a more aggregated perspective? OpenTelemetry provides supports for metrics, a time series
+of numbers that might express things such as CPU utilization, request count for an HTTP server, or a
+business metric such as transactions.</p>
+<p>All metrics can be annotated with labels: additional qualifiers that help describe what
+subdivision of the measurements the metric represents.</p>
+<p>The following is an example of emitting metrics to console, in a similar fashion to the trace example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># metrics.py</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">opentelemetry</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.metrics</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">MeterProvider</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.metrics.export</span> <span class="kn">import</span> <span class="n">ConsoleMetricsExporter</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.metrics.export.controller</span> <span class="kn">import</span> <span class="n">PushController</span>
+
+<span class="n">metrics</span><span class="o">.</span><span class="n">set_meter_provider</span><span class="p">(</span><span class="n">MeterProvider</span><span class="p">())</span>
+<span class="n">meter</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get_meter</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">exporter</span> <span class="o">=</span> <span class="n">ConsoleMetricsExporter</span><span class="p">()</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">PushController</span><span class="p">(</span><span class="n">meter</span><span class="p">,</span> <span class="n">exporter</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">staging_labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;staging&quot;</span><span class="p">}</span>
+
+<span class="n">requests_counter</span> <span class="o">=</span> <span class="n">meter</span><span class="o">.</span><span class="n">create_metric</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;requests&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of requests&quot;</span><span class="p">,</span>
+    <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="n">value_type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+    <span class="n">metric_type</span><span class="o">=</span><span class="n">Counter</span><span class="p">,</span>
+    <span class="n">label_keys</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;environment&quot;</span><span class="p">,),</span>
+<span class="p">)</span>
+
+<span class="n">requests_counter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">staging_labels</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">requests_counter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">staging_labels</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The sleeps will cause the script to take a while, but running it should yield:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ python metrics.py
+ConsoleMetricsExporter<span class="o">(</span><span class="nv">data</span><span class="o">=</span><span class="s2">&quot;Counter(name=&quot;</span>requests<span class="s2">&quot;, description=&quot;</span>number of requests<span class="s2">&quot;)&quot;</span>, <span class="nv">labels</span><span class="o">=</span><span class="s2">&quot;((&#39;environment&#39;, &#39;staging&#39;),)&quot;</span>, <span class="nv">value</span><span class="o">=</span><span class="m">25</span><span class="o">)</span>
+ConsoleMetricsExporter<span class="o">(</span><span class="nv">data</span><span class="o">=</span><span class="s2">&quot;Counter(name=&quot;</span>requests<span class="s2">&quot;, description=&quot;</span>number of requests<span class="s2">&quot;)&quot;</span>, <span class="nv">labels</span><span class="o">=</span><span class="s2">&quot;((&#39;environment&#39;, &#39;staging&#39;),)&quot;</span>, <span class="nv">value</span><span class="o">=</span><span class="m">45</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-prometheus">
+<h2>Using Prometheus<a class="headerlink" href="#using-prometheus" title="Permalink to this headline">¶</a></h2>
+<p>Similar to traces, it is really valuable for metrics to have its own data store to help visualize and query the data. A common solution for this is
+<a class="reference external" href="https://prometheus.io/">Prometheus</a>.</p>
+<p>Let’s start by bringing up a Prometheus instance ourselves, to scrape our application. Write the following configuration:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /tmp/prometheus.yml</span>
+<span class="nt">scrape_configs</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">job_name</span><span class="p">:</span> <span class="s">&#39;my-app&#39;</span>
+  <span class="nt">scrape_interval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5s</span>
+  <span class="nt">static_configs</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">targets</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;localhost:8000&#39;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>And start a docker container for it:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># --net=host will not work properly outside of Linux.</span>
+docker run --net<span class="o">=</span>host -v /tmp/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus <span class="se">\</span>
+    --log.level<span class="o">=</span>debug --config.file<span class="o">=</span>/etc/prometheus/prometheus.yml
+</pre></div>
+</div>
+<p>For our Python application, we will need to install an exporter specific to Prometheus:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install opentelemetry-ext-prometheus
+</pre></div>
+</div>
+<p>And use that instead of the <a class="reference internal" href="sdk/metrics.export.html#opentelemetry.sdk.metrics.export.ConsoleMetricsExporter" title="opentelemetry.sdk.metrics.export.ConsoleMetricsExporter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">ConsoleMetricsExporter</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># prometheus.py</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">opentelemetry</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.ext.prometheus</span> <span class="kn">import</span> <span class="n">PrometheusMetricsExporter</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.metrics</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">MeterProvider</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.metrics.export</span> <span class="kn">import</span> <span class="n">ConsoleMetricsExporter</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.metrics.export.controller</span> <span class="kn">import</span> <span class="n">PushController</span>
+<span class="kn">from</span> <span class="nn">prometheus_client</span> <span class="kn">import</span> <span class="n">start_http_server</span>
+
+<span class="c1"># Start Prometheus client</span>
+<span class="n">start_http_server</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">)</span>
+
+<span class="n">batcher_mode</span> <span class="o">=</span> <span class="s2">&quot;stateful&quot;</span>
+<span class="n">metrics</span><span class="o">.</span><span class="n">set_meter_provider</span><span class="p">(</span><span class="n">MeterProvider</span><span class="p">())</span>
+<span class="n">meter</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get_meter</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">batcher_mode</span> <span class="o">==</span> <span class="s2">&quot;stateful&quot;</span><span class="p">)</span>
+<span class="n">exporter</span> <span class="o">=</span> <span class="n">PrometheusMetricsExporter</span><span class="p">(</span><span class="s2">&quot;MyAppPrefix&quot;</span><span class="p">)</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">PushController</span><span class="p">(</span><span class="n">meter</span><span class="p">,</span> <span class="n">exporter</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">staging_labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;staging&quot;</span><span class="p">}</span>
+
+<span class="n">requests_counter</span> <span class="o">=</span> <span class="n">meter</span><span class="o">.</span><span class="n">create_metric</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;requests&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of requests&quot;</span><span class="p">,</span>
+    <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="n">value_type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+    <span class="n">metric_type</span><span class="o">=</span><span class="n">Counter</span><span class="p">,</span>
+    <span class="n">label_keys</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;environment&quot;</span><span class="p">,),</span>
+<span class="p">)</span>
+
+<span class="n">requests_counter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">staging_labels</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">requests_counter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">staging_labels</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># This line is added to keep the HTTP server up long enough to scrape.</span>
+<span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Press any key to exit...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The Prometheus server will run locally on port 8000, and the instrumented code will make metrics available to Prometheus via the <a class="reference internal" href="ext/prometheus/prometheus.html#opentelemetry.ext.prometheus.PrometheusMetricsExporter" title="opentelemetry.ext.prometheus.PrometheusMetricsExporter"><code class="xref any py py-class docutils literal notranslate"><span class="pre">PrometheusMetricsExporter</span></code></a>.
+Visit the Prometheus UI (<a class="reference external" href="http://localhost:9090">http://localhost:9090</a>) to view your metrics.</p>
+</div>
+<div class="section" id="using-the-opentelemetry-collector-for-traces-and-metrics">
+<h2>Using the OpenTelemetry Collector for traces and metrics<a class="headerlink" href="#using-the-opentelemetry-collector-for-traces-and-metrics" title="Permalink to this headline">¶</a></h2>
+<p>Although it’s possible to directly export your telemetry data to specific backends, you may more complex use cases, including:</p>
+<ul class="simple">
+<li><p>having a single telemetry sink shared by multiple services, to reduce overhead of switching exporters</p></li>
+<li><p>aggregating metrics or traces across multiple services, running on multiple hosts</p></li>
+</ul>
+<p>To enable a broad range of aggregation strategies, OpenTelemetry provides the <a class="reference external" href="https://github.com/open-telemetry/opentelemetry-collector">opentelemetry-collector</a>.
+The Collector is a flexible application that can consume trace and metric data and export to multiple other backends, including to another instance of the Collector.</p>
+<p>To see how this works in practice, let’s start the Collector locally. Write the following file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /tmp/otel-collector-config.yaml</span>
+<span class="nt">receivers</span><span class="p">:</span>
+    <span class="nt">opencensus</span><span class="p">:</span>
+        <span class="nt">endpoint</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0:55678</span>
+<span class="nt">exporters</span><span class="p">:</span>
+    <span class="nt">logging</span><span class="p">:</span>
+        <span class="nt">loglevel</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">debug</span>
+<span class="nt">processors</span><span class="p">:</span>
+    <span class="nt">batch</span><span class="p">:</span>
+    <span class="nt">queued_retry</span><span class="p">:</span>
+<span class="nt">service</span><span class="p">:</span>
+    <span class="nt">pipelines</span><span class="p">:</span>
+        <span class="nt">traces</span><span class="p">:</span>
+            <span class="nt">receivers</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">opencensus</span><span class="p p-Indicator">]</span>
+            <span class="nt">exporters</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">logging</span><span class="p p-Indicator">]</span>
+            <span class="nt">processors</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">batch</span><span class="p p-Indicator">,</span> <span class="nv">queued_retry</span><span class="p p-Indicator">]</span>
+        <span class="nt">metrics</span><span class="p">:</span>
+            <span class="nt">receivers</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">opencensus</span><span class="p p-Indicator">]</span>
+            <span class="nt">exporters</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">logging</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>Start the docker container:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker run -p <span class="m">55678</span>:55678 <span class="se">\</span>
+    -v /tmp/otel-collector-config.yaml:/etc/otel-collector-config.yaml <span class="se">\</span>
+    omnition/opentelemetry-collector-contrib:latest <span class="se">\</span>
+    --config<span class="o">=</span>/etc/otel-collector-config.yaml
+</pre></div>
+</div>
+<p>Install the OpenTelemetry Collector exporter:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install opentelemetry-ext-otcollector
+</pre></div>
+</div>
+<p>And execute the following script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># otcollector.py</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">opentelemetry</span> <span class="kn">import</span> <span class="n">trace</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.ext.otcollector.trace_exporter</span> <span class="kn">import</span> <span class="n">CollectorSpanExporter</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace</span> <span class="kn">import</span> <span class="n">TracerProvider</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace.export</span> <span class="kn">import</span> <span class="n">BatchExportSpanProcessor</span>
+<span class="kn">from</span> <span class="nn">opentelemetry</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.ext.otcollector.metrics_exporter</span> <span class="kn">import</span> <span class="n">CollectorMetricsExporter</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.metrics</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">MeterProvider</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.metrics.export.controller</span> <span class="kn">import</span> <span class="n">PushController</span>
+
+
+<span class="c1"># create a CollectorSpanExporter</span>
+<span class="n">span_exporter</span> <span class="o">=</span> <span class="n">CollectorSpanExporter</span><span class="p">(</span>
+    <span class="c1"># optional:</span>
+    <span class="c1"># endpoint=&quot;myCollectorUrl:55678&quot;,</span>
+    <span class="c1"># service_name=&quot;test_service&quot;,</span>
+    <span class="c1"># host_name=&quot;machine/container name&quot;,</span>
+<span class="p">)</span>
+<span class="n">tracer_provider</span> <span class="o">=</span> <span class="n">TracerProvider</span><span class="p">()</span>
+<span class="n">trace</span><span class="o">.</span><span class="n">set_tracer_provider</span><span class="p">(</span><span class="n">tracer_provider</span><span class="p">)</span>
+<span class="n">span_processor</span> <span class="o">=</span> <span class="n">BatchExportSpanProcessor</span><span class="p">(</span><span class="n">span_exporter</span><span class="p">)</span>
+<span class="n">tracer_provider</span><span class="o">.</span><span class="n">add_span_processor</span><span class="p">(</span><span class="n">span_processor</span><span class="p">)</span>
+
+<span class="c1"># create a CollectorMetricsExporter</span>
+<span class="n">metric_exporter</span> <span class="o">=</span> <span class="n">CollectorMetricsExporter</span><span class="p">(</span>
+    <span class="c1"># optional:</span>
+    <span class="c1"># endpoint=&quot;myCollectorUrl:55678&quot;,</span>
+    <span class="c1"># service_name=&quot;test_service&quot;,</span>
+    <span class="c1"># host_name=&quot;machine/container name&quot;,</span>
+<span class="p">)</span>
+
+<span class="c1"># Meter is responsible for creating and recording metrics</span>
+<span class="n">metrics</span><span class="o">.</span><span class="n">set_meter_provider</span><span class="p">(</span><span class="n">MeterProvider</span><span class="p">())</span>
+<span class="n">meter</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get_meter</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="c1"># controller collects metrics created from meter and exports it via the</span>
+<span class="c1"># exporter every interval</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">PushController</span><span class="p">(</span><span class="n">meter</span><span class="p">,</span> <span class="n">metric_exporter</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Configure the tracer to use the collector exporter</span>
+<span class="n">tracer</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">get_tracer_provider</span><span class="p">()</span><span class="o">.</span><span class="n">get_tracer</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">start_as_current_span</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+
+<span class="n">requests_counter</span> <span class="o">=</span> <span class="n">meter</span><span class="o">.</span><span class="n">create_metric</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;requests&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of requests&quot;</span><span class="p">,</span>
+    <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="n">value_type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+    <span class="n">metric_type</span><span class="o">=</span><span class="n">Counter</span><span class="p">,</span>
+    <span class="n">label_keys</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;environment&quot;</span><span class="p">,),</span>
+<span class="p">)</span>
+<span class="c1"># Labels are used to identify key-values that are associated with a specific</span>
+<span class="c1"># metric that you want to record. These are useful for pre-aggregation and can</span>
+<span class="c1"># be used to store custom dimensions pertaining to a metric</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;staging&quot;</span><span class="p">}</span>
+<span class="n">requests_counter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># give push_controller time to push metrics</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api/api.html" class="btn btn-neutral float-right" title="OpenTelemetry Python API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="OpenTelemetry-Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

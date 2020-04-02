@@ -1,0 +1,385 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OpenTelemetry-Python &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started with OpenTelemetry Python" href="getting-started.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto_instrumentation/auto_instrumentation.html">OpenTelemetry Python Autoinstrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ext/dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/grpc/grpc.client_interceptor.html">grpc.client_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/grpc/grpc.server_interceptor.html">grpc.server_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/http_requests/http_requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/otcollector/otcollector.html">OpenTelemetry Collector Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/basic_tracer/README.html">Basic Tracer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/http/README.html">HTTP Integration Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/jaeger_exporter/README.html">Jaeger Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/opentracing/README.html">OpenTracing Shim Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/otcollector-metrics/README.html">OT Collector Metrics Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/otcollector-tracer/README.html">OT Collector Tracer Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/prometheus/README.html">Prometheus Metrics Exporter Example</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>OpenTelemetry-Python</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="opentelemetry-python">
+<h1>OpenTelemetry-Python<a class="headerlink" href="#opentelemetry-python" title="Permalink to this headline">¶</a></h1>
+<p>The Python <a class="reference external" href="https://opentelemetry.io/">OpenTelemetry</a> client.</p>
+<a class="reference external image-reference" href="https://gitter.im/open-telemetry/opentelemetry-python"><img alt="Gitter Chat" src="https://img.shields.io/gitter/room/opentelemetry/opentelemetry-python" /></a>
+<p>This documentation describes the <a class="reference internal" href="api/api.html"><span class="doc">opentelemetry-api</span></a>,
+<a class="reference internal" href="sdk/sdk.html"><span class="doc">opentelemetry-sdk</span></a>, and several <a class="reference external" href="#integrations">integration packages</a>.</p>
+<p><strong>Please note</strong> that this library is currently in alpha, and shouldn’t be
+used in production environments.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>The API and SDK packages are available on PyPI, and can installed via pip:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install opentelemetry-api
+pip install opentelemetry-sdk
+</pre></div>
+</div>
+<p>In addition, there are several extension packages which can be installed separately as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">opentelemetry</span><span class="o">-</span><span class="n">ext</span><span class="o">-</span><span class="p">{</span><span class="n">integration</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The extension packages can be found in <a class="reference external" href="https://github.com/open-telemetry/opentelemetry-python/blob/master/ext/">ext/ directory of the repository</a>.</p>
+</div>
+<div class="section" id="extensions">
+<h2>Extensions<a class="headerlink" href="#extensions" title="Permalink to this headline">¶</a></h2>
+<p>Visit <a class="reference external" href="https://opentelemetry.io/registry/?s=python">OpenTelemetry Registry</a> to find
+related projects like exporters, instrumentation libraries, tracer implementations, etc.</p>
+<div class="section" id="installing-cutting-edge-packages">
+<h3>Installing Cutting Edge Packages<a class="headerlink" href="#installing-cutting-edge-packages" title="Permalink to this headline">¶</a></h3>
+<p>While the project is pre-1.0, there may be significant functionality that
+has not yet been released to PyPI. In that situation, you may want to
+install the packages directly from the repo. This can be done by cloning the
+repository and doing an <a class="reference external" href="https://pip.pypa.io/en/stable/reference/pip_install/#editable-installs">editable
+install</a>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/open-telemetry/opentelemetry-python.git
+<span class="nb">cd</span> opentelemetry-python
+pip install -e ./opentelemetry-api
+pip install -e ./opentelemetry-sdk
+pip install -e ./ext/opentelemetry-ext-<span class="o">{</span>integration<span class="o">}</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound" id="getting-started">
+<p class="caption"><span class="caption-text">Getting Started</span><a class="headerlink" href="#getting-started" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound" id="packages">
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span><a class="headerlink" href="#packages" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto_instrumentation/auto_instrumentation.html">OpenTelemetry Python Autoinstrumentation</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound" id="integrations">
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span><a class="headerlink" href="#integrations" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ext/dbapi/dbapi.html">OpenTelemetry Database API Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ext/dbapi/dbapi.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext/dbapi/dbapi.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ext/flask/flask.html">OpenTelemetry Flask Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ext/flask/flask.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext/flask/flask.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ext/grpc/grpc.html">OpenTelemetry gRPC Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ext/grpc/grpc.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext/grpc/grpc.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext/grpc/grpc.html#module-opentelemetry.ext.grpc">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ext/grpc/grpc.client_interceptor.html">grpc.client_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/grpc/grpc.server_interceptor.html">grpc.server_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ext/http_requests/http_requests.html">OpenTelemetry requests Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ext/http_requests/http_requests.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext/http_requests/http_requests.html#limitations">Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext/http_requests/http_requests.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ext/jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ext/jaeger/jaeger.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext/jaeger/jaeger.html#api">API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext/jaeger/jaeger.html#module-opentelemetry.ext.jaeger.gen.jaeger.ttypes">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ext/mysql/mysql.html">OpenTelemetry MySQL Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ext/mysql/mysql.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext/mysql/mysql.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ext/opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ext/opentracing_shim/opentracing_shim.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ext/otcollector/otcollector.html">OpenTelemetry Collector Exporter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ext/otcollector/otcollector.html#metrics-usage">Metrics Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ext/prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ext/prometheus/prometheus.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext/prometheus/prometheus.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ext/psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ext/psycopg2/psycopg2.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext/psycopg2/psycopg2.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ext/pymongo/pymongo.html">OpenTelemetry pymongo Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ext/pymongo/pymongo.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext/pymongo/pymongo.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ext/wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ext/wsgi/wsgi.html#usage-flask">Usage (Flask)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext/wsgi/wsgi.html#usage-django">Usage (Django)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext/wsgi/wsgi.html#api">API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ext/zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ext/zipkin/zipkin.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext/zipkin/zipkin.html#api">API</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound" id="examples">
+<p class="caption"><span class="caption-text">Examples</span><a class="headerlink" href="#examples" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/basic_tracer/README.html">Basic Tracer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/http/README.html">HTTP Integration Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/jaeger_exporter/README.html">Jaeger Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/opentracing/README.html">OpenTracing Shim Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/otcollector-metrics/README.html">OT Collector Metrics Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/otcollector-tracer/README.html">OT Collector Tracer Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/prometheus/README.html">Prometheus Metrics Exporter Example</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="getting-started.html" class="btn btn-neutral float-right" title="Getting Started with OpenTelemetry Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

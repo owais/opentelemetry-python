@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>opentelemetry.ext.wsgi &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../auto_instrumentation/auto_instrumentation.html">OpenTelemetry Python Autoinstrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/grpc/grpc.client_interceptor.html">grpc.client_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/grpc/grpc.server_interceptor.html">grpc.server_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/http_requests/http_requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/otcollector/otcollector.html">OpenTelemetry Collector Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/basic_tracer/README.html">Basic Tracer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/http/README.html">HTTP Integration Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/jaeger_exporter/README.html">Jaeger Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/opentracing/README.html">OpenTracing Shim Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/otcollector-metrics/README.html">OT Collector Metrics Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/otcollector-tracer/README.html">OT Collector Tracer Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/prometheus/README.html">Prometheus Metrics Exporter Example</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>opentelemetry.ext.wsgi</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for opentelemetry.ext.wsgi</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright The OpenTelemetry Authors</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This library provides a WSGI middleware that can be used on any WSGI framework</span>
+<span class="sd">(such as Django / Flask) to track requests timing through OpenTelemetry.</span>
+
+<span class="sd">Usage (Flask)</span>
+<span class="sd">-------------</span>
+
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">    from flask import Flask</span>
+<span class="sd">    from opentelemetry.ext.wsgi import OpenTelemetryMiddleware</span>
+
+<span class="sd">    app = Flask(__name__)</span>
+<span class="sd">    app.wsgi_app = OpenTelemetryMiddleware(app.wsgi_app)</span>
+
+<span class="sd">    @app.route(&quot;/&quot;)</span>
+<span class="sd">    def hello():</span>
+<span class="sd">        return &quot;Hello!&quot;</span>
+
+<span class="sd">    if __name__ == &quot;__main__&quot;:</span>
+<span class="sd">        app.run(debug=True)</span>
+
+
+<span class="sd">Usage (Django)</span>
+<span class="sd">--------------</span>
+
+<span class="sd">Modify the application&#39;s ``wsgi.py`` file as shown below.</span>
+
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">    import os</span>
+<span class="sd">    from opentelemetry.ext.wsgi import OpenTelemetryMiddleware</span>
+<span class="sd">    from django.core.wsgi import get_wsgi_application</span>
+
+<span class="sd">    os.environ.setdefault(&#39;DJANGO_SETTINGS_MODULE&#39;, &#39;application.settings&#39;)</span>
+
+<span class="sd">    application = get_wsgi_application()</span>
+<span class="sd">    application = OpenTelemetryMiddleware(application)</span>
+
+<span class="sd">API</span>
+<span class="sd">---</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">typing</span>
+<span class="kn">import</span> <span class="nn">wsgiref.util</span> <span class="k">as</span> <span class="nn">wsgiref_util</span>
+
+<span class="kn">from</span> <span class="nn">opentelemetry</span> <span class="kn">import</span> <span class="n">context</span><span class="p">,</span> <span class="n">propagators</span><span class="p">,</span> <span class="n">trace</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.ext.wsgi.version</span> <span class="kn">import</span> <span class="n">__version__</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.trace.propagation</span> <span class="kn">import</span> <span class="n">get_span_from_context</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.trace.status</span> <span class="kn">import</span> <span class="n">Status</span><span class="p">,</span> <span class="n">StatusCanonicalCode</span>
+
+<span class="n">_HTTP_VERSION_PREFIX</span> <span class="o">=</span> <span class="s2">&quot;HTTP/&quot;</span>
+
+
+<div class="viewcode-block" id="get_header_from_environ"><a class="viewcode-back" href="../../../ext/wsgi/wsgi.html#opentelemetry.ext.wsgi.get_header_from_environ">[docs]</a><span class="k">def</span> <span class="nf">get_header_from_environ</span><span class="p">(</span>
+    <span class="n">environ</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">header_name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Retrieve a HTTP header value from the PEP3333-conforming WSGI environ.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list with a single string with the header value if it exists, else an empty list.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">environ_key</span> <span class="o">=</span> <span class="s2">&quot;HTTP_&quot;</span> <span class="o">+</span> <span class="n">header_name</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">environ_key</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">value</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="setifnotnone"><a class="viewcode-back" href="../../../ext/wsgi/wsgi.html#opentelemetry.ext.wsgi.setifnotnone">[docs]</a><span class="k">def</span> <span class="nf">setifnotnone</span><span class="p">(</span><span class="n">dic</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dic</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="http_status_to_canonical_code"><a class="viewcode-back" href="../../../ext/wsgi/wsgi.html#opentelemetry.ext.wsgi.http_status_to_canonical_code">[docs]</a><span class="k">def</span> <span class="nf">http_status_to_canonical_code</span><span class="p">(</span><span class="n">code</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">allow_redirect</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># pylint:disable=too-many-branches,too-many-return-statements</span>
+    <span class="k">if</span> <span class="n">code</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">UNKNOWN</span>
+    <span class="k">if</span> <span class="n">code</span> <span class="o">&lt;=</span> <span class="mi">299</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">OK</span>
+    <span class="k">if</span> <span class="n">code</span> <span class="o">&lt;=</span> <span class="mi">399</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">allow_redirect</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">OK</span>
+        <span class="k">return</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">DEADLINE_EXCEEDED</span>
+    <span class="k">if</span> <span class="n">code</span> <span class="o">&lt;=</span> <span class="mi">499</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">401</span><span class="p">:</span>  <span class="c1"># HTTPStatus.UNAUTHORIZED:</span>
+            <span class="k">return</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">UNAUTHENTICATED</span>
+        <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>  <span class="c1"># HTTPStatus.FORBIDDEN:</span>
+            <span class="k">return</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">PERMISSION_DENIED</span>
+        <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>  <span class="c1"># HTTPStatus.NOT_FOUND:</span>
+            <span class="k">return</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">NOT_FOUND</span>
+        <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">429</span><span class="p">:</span>  <span class="c1"># HTTPStatus.TOO_MANY_REQUESTS:</span>
+            <span class="k">return</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">RESOURCE_EXHAUSTED</span>
+        <span class="k">return</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span>
+    <span class="k">if</span> <span class="n">code</span> <span class="o">&lt;=</span> <span class="mi">599</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">501</span><span class="p">:</span>  <span class="c1"># HTTPStatus.NOT_IMPLEMENTED:</span>
+            <span class="k">return</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span>
+        <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">503</span><span class="p">:</span>  <span class="c1"># HTTPStatus.SERVICE_UNAVAILABLE:</span>
+            <span class="k">return</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">UNAVAILABLE</span>
+        <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">504</span><span class="p">:</span>  <span class="c1"># HTTPStatus.GATEWAY_TIMEOUT:</span>
+            <span class="k">return</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">DEADLINE_EXCEEDED</span>
+        <span class="k">return</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">INTERNAL</span>
+    <span class="k">return</span> <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">UNKNOWN</span></div>
+
+
+<div class="viewcode-block" id="collect_request_attributes"><a class="viewcode-back" href="../../../ext/wsgi/wsgi.html#opentelemetry.ext.wsgi.collect_request_attributes">[docs]</a><span class="k">def</span> <span class="nf">collect_request_attributes</span><span class="p">(</span><span class="n">environ</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Collects HTTP request attributes from the PEP3333-conforming</span>
+<span class="sd">    WSGI environ and returns a dictionary to be used as span creation attributes.&quot;&quot;&quot;</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;component&quot;</span><span class="p">:</span> <span class="s2">&quot;http&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;http.method&quot;</span><span class="p">:</span> <span class="n">environ</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;http.server_name&quot;</span><span class="p">:</span> <span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SERVER_NAME&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;http.scheme&quot;</span><span class="p">:</span> <span class="n">environ</span><span class="p">[</span><span class="s2">&quot;wsgi.url_scheme&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;host.port&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SERVER_PORT&quot;</span><span class="p">]),</span>
+    <span class="p">}</span>
+
+    <span class="n">setifnotnone</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s2">&quot;http.host&quot;</span><span class="p">,</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;HTTP_HOST&quot;</span><span class="p">))</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;RAW_URI&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># Note: `&quot;&quot; or None is None`</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">&quot;http.target&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">&quot;http.url&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wsgiref_util</span><span class="o">.</span><span class="n">request_uri</span><span class="p">(</span><span class="n">environ</span><span class="p">)</span>
+
+    <span class="n">remote_addr</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;REMOTE_ADDR&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">remote_addr</span><span class="p">:</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">&quot;net.peer.ip&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">remote_addr</span>
+    <span class="n">remote_host</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;REMOTE_HOST&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">remote_host</span> <span class="ow">and</span> <span class="n">remote_host</span> <span class="o">!=</span> <span class="n">remote_addr</span><span class="p">:</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">&quot;net.peer.name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">remote_host</span>
+
+    <span class="n">setifnotnone</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s2">&quot;net.peer.port&quot;</span><span class="p">,</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;REMOTE_PORT&quot;</span><span class="p">))</span>
+    <span class="n">flavor</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;SERVER_PROTOCOL&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">flavor</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">_HTTP_VERSION_PREFIX</span><span class="p">):</span>
+        <span class="n">flavor</span> <span class="o">=</span> <span class="n">flavor</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">_HTTP_VERSION_PREFIX</span><span class="p">)</span> <span class="p">:]</span>
+    <span class="k">if</span> <span class="n">flavor</span><span class="p">:</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">&quot;http.flavor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flavor</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="add_response_attributes"><a class="viewcode-back" href="../../../ext/wsgi/wsgi.html#opentelemetry.ext.wsgi.add_response_attributes">[docs]</a><span class="k">def</span> <span class="nf">add_response_attributes</span><span class="p">(</span>
+    <span class="n">span</span><span class="p">,</span> <span class="n">start_response_status</span><span class="p">,</span> <span class="n">response_headers</span>
+<span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
+    <span class="sd">&quot;&quot;&quot;Adds HTTP response attributes to span using the arguments</span>
+<span class="sd">    passed to a PEP3333-conforming start_response callable.&quot;&quot;&quot;</span>
+
+    <span class="n">status_code</span><span class="p">,</span> <span class="n">status_text</span> <span class="o">=</span> <span class="n">start_response_status</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="s2">&quot;http.status_text&quot;</span><span class="p">,</span> <span class="n">status_text</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">status_code</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">status_code</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="n">span</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span>
+            <span class="n">Status</span><span class="p">(</span>
+                <span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">UNKNOWN</span><span class="p">,</span>
+                <span class="s2">&quot;Non-integer HTTP status: &quot;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">status_code</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="s2">&quot;http.status_code&quot;</span><span class="p">,</span> <span class="n">status_code</span><span class="p">)</span>
+        <span class="n">span</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span><span class="n">Status</span><span class="p">(</span><span class="n">http_status_to_canonical_code</span><span class="p">(</span><span class="n">status_code</span><span class="p">)))</span></div>
+
+
+<div class="viewcode-block" id="get_default_span_name"><a class="viewcode-back" href="../../../ext/wsgi/wsgi.html#opentelemetry.ext.wsgi.get_default_span_name">[docs]</a><span class="k">def</span> <span class="nf">get_default_span_name</span><span class="p">(</span><span class="n">environ</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates a (generic) span name for an incoming HTTP request based on the PEP3333 conforming WSGI environ.&quot;&quot;&quot;</span>
+
+    <span class="c1"># TODO: Update once</span>
+    <span class="c1">#  https://github.com/open-telemetry/opentelemetry-specification/issues/270</span>
+    <span class="c1">#  is resolved</span>
+    <span class="k">return</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PATH_INFO&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="OpenTelemetryMiddleware"><a class="viewcode-back" href="../../../ext/wsgi/wsgi.html#opentelemetry.ext.wsgi.OpenTelemetryMiddleware">[docs]</a><span class="k">class</span> <span class="nc">OpenTelemetryMiddleware</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;The WSGI application middleware.</span>
+
+<span class="sd">    This class is a PEP 3333 conforming WSGI middleware that starts and</span>
+<span class="sd">    annotates spans for any requests it is invoked with.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wsgi: The WSGI application callable to forward requests to.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wsgi</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wsgi</span> <span class="o">=</span> <span class="n">wsgi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">get_tracer</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">__version__</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_create_start_response</span><span class="p">(</span><span class="n">span</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">start_response</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">_start_response</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">response_headers</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">add_response_attributes</span><span class="p">(</span><span class="n">span</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">response_headers</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">start_response</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">response_headers</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">_start_response</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The WSGI application</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            environ: A WSGI environment.</span>
+<span class="sd">            start_response: The WSGI start_response callable.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">token</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span>
+            <span class="n">propagators</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">get_header_from_environ</span><span class="p">,</span> <span class="n">environ</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">span_name</span> <span class="o">=</span> <span class="n">get_default_span_name</span><span class="p">(</span><span class="n">environ</span><span class="p">)</span>
+
+        <span class="n">span</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">start_span</span><span class="p">(</span>
+            <span class="n">span_name</span><span class="p">,</span>
+            <span class="n">kind</span><span class="o">=</span><span class="n">trace</span><span class="o">.</span><span class="n">SpanKind</span><span class="o">.</span><span class="n">SERVER</span><span class="p">,</span>
+            <span class="n">attributes</span><span class="o">=</span><span class="n">collect_request_attributes</span><span class="p">(</span><span class="n">environ</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">use_span</span><span class="p">(</span><span class="n">span</span><span class="p">):</span>
+                <span class="n">start_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_start_response</span><span class="p">(</span>
+                    <span class="n">span</span><span class="p">,</span> <span class="n">start_response</span>
+                <span class="p">)</span>
+                <span class="n">iterable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wsgi</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">_end_span_after_iterating</span><span class="p">(</span>
+                    <span class="n">iterable</span><span class="p">,</span> <span class="n">span</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="p">,</span> <span class="n">token</span>
+                <span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa</span>
+            <span class="c1"># TODO Set span status (cf. https://github.com/open-telemetry/opentelemetry-python/issues/292)</span>
+            <span class="n">span</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+            <span class="n">context</span><span class="o">.</span><span class="n">detach</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+            <span class="k">raise</span></div>
+
+
+<span class="c1"># Put this in a subfunction to not delay the call to the wrapped</span>
+<span class="c1"># WSGI application (instrumentation should change the application</span>
+<span class="c1"># behavior as little as possible).</span>
+<span class="k">def</span> <span class="nf">_end_span_after_iterating</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">span</span><span class="p">,</span> <span class="n">tracer</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">use_span</span><span class="p">(</span><span class="n">span</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">yielded</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">yielded</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">close</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="s2">&quot;close&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">close</span><span class="p">:</span>
+            <span class="n">close</span><span class="p">()</span>
+        <span class="n">span</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">detach</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

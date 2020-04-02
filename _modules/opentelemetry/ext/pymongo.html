@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>opentelemetry.ext.pymongo &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../auto_instrumentation/auto_instrumentation.html">OpenTelemetry Python Autoinstrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/grpc/grpc.client_interceptor.html">grpc.client_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/grpc/grpc.server_interceptor.html">grpc.server_interceptor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/http_requests/http_requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/otcollector/otcollector.html">OpenTelemetry Collector Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/basic_tracer/README.html">Basic Tracer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/http/README.html">HTTP Integration Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/jaeger_exporter/README.html">Jaeger Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/opentracing/README.html">OpenTracing Shim Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/otcollector-metrics/README.html">OT Collector Metrics Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/otcollector-tracer/README.html">OT Collector Tracer Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/prometheus/README.html">Prometheus Metrics Exporter Example</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>opentelemetry.ext.pymongo</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for opentelemetry.ext.pymongo</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright The OpenTelemetry Authors</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The integration with MongoDB supports the `pymongo`_ library and is specified</span>
+<span class="sd">to ``trace_integration`` using ``&#39;pymongo&#39;``.</span>
+
+<span class="sd">.. _pymongo: https://pypi.org/project/pymongo</span>
+
+<span class="sd">Usage</span>
+<span class="sd">-----</span>
+
+<span class="sd">.. code:: python</span>
+
+<span class="sd">    from pymongo import MongoClient</span>
+<span class="sd">    from opentelemetry.trace import TracerProvider</span>
+<span class="sd">    from opentelemetry.trace.ext.pymongo import trace_integration</span>
+
+<span class="sd">    trace.set_tracer_provider(TracerProvider())</span>
+<span class="sd">    tracer = trace.get_tracer(__name__)</span>
+
+<span class="sd">    trace_integration(tracer)</span>
+<span class="sd">    client = MongoClient()</span>
+<span class="sd">    db = client[&quot;MongoDB_Database&quot;]</span>
+<span class="sd">    collection = db[&quot;MongoDB_Collection&quot;]</span>
+<span class="sd">    collection.find_one()</span>
+
+<span class="sd">API</span>
+<span class="sd">---</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">monitoring</span>
+
+<span class="kn">from</span> <span class="nn">opentelemetry.trace</span> <span class="kn">import</span> <span class="n">SpanKind</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.trace.status</span> <span class="kn">import</span> <span class="n">Status</span><span class="p">,</span> <span class="n">StatusCanonicalCode</span>
+
+<span class="n">DATABASE_TYPE</span> <span class="o">=</span> <span class="s2">&quot;mongodb&quot;</span>
+<span class="n">COMMAND_ATTRIBUTES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;filter&quot;</span><span class="p">,</span> <span class="s2">&quot;sort&quot;</span><span class="p">,</span> <span class="s2">&quot;skip&quot;</span><span class="p">,</span> <span class="s2">&quot;limit&quot;</span><span class="p">,</span> <span class="s2">&quot;pipeline&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="trace_integration"><a class="viewcode-back" href="../../../ext/pymongo/pymongo.html#opentelemetry.ext.pymongo.trace_integration">[docs]</a><span class="k">def</span> <span class="nf">trace_integration</span><span class="p">(</span><span class="n">tracer</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Integrate with pymongo to trace it using event listener.</span>
+<span class="sd">       https://api.mongodb.com/python/current/api/pymongo/monitoring.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">monitoring</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">CommandTracer</span><span class="p">(</span><span class="n">tracer</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="CommandTracer"><a class="viewcode-back" href="../../../ext/pymongo/pymongo.html#opentelemetry.ext.pymongo.CommandTracer">[docs]</a><span class="k">class</span> <span class="nc">CommandTracer</span><span class="p">(</span><span class="n">monitoring</span><span class="o">.</span><span class="n">CommandListener</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tracer</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">tracer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The tracer is not provided.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tracer</span> <span class="o">=</span> <span class="n">tracer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_span_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="CommandTracer.started"><a class="viewcode-back" href="../../../ext/pymongo/pymongo.html#opentelemetry.ext.pymongo.CommandTracer.started">[docs]</a>    <span class="k">def</span> <span class="nf">started</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">monitoring</span><span class="o">.</span><span class="n">CommandStartedEvent</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Method to handle a pymongo CommandStartedEvent &quot;&quot;&quot;</span>
+        <span class="n">command</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">command</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">command_name</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">DATABASE_TYPE</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">event</span><span class="o">.</span><span class="n">command_name</span>
+        <span class="n">statement</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">command_name</span>
+        <span class="k">if</span> <span class="n">command</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">+=</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">command</span>
+            <span class="n">statement</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">command</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">span</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tracer</span><span class="o">.</span><span class="n">start_span</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">SpanKind</span><span class="o">.</span><span class="n">CLIENT</span><span class="p">)</span>
+            <span class="n">span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="s2">&quot;component&quot;</span><span class="p">,</span> <span class="n">DATABASE_TYPE</span><span class="p">)</span>
+            <span class="n">span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="s2">&quot;db.type&quot;</span><span class="p">,</span> <span class="n">DATABASE_TYPE</span><span class="p">)</span>
+            <span class="n">span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="s2">&quot;db.instance&quot;</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">database_name</span><span class="p">)</span>
+            <span class="n">span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="s2">&quot;db.statement&quot;</span><span class="p">,</span> <span class="n">statement</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">connection_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="s2">&quot;net.peer.name&quot;</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">connection_id</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="s2">&quot;net.peer.port&quot;</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">connection_id</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+            <span class="c1"># pymongo specific, not specified by spec</span>
+            <span class="n">span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="s2">&quot;db.mongo.operation_id&quot;</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">operation_id</span><span class="p">)</span>
+            <span class="n">span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="s2">&quot;db.mongo.request_id&quot;</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">request_id</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">COMMAND_ATTRIBUTES</span><span class="p">:</span>
+                <span class="n">_attr</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">command</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">_attr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="s2">&quot;db.mongo.&quot;</span> <span class="o">+</span> <span class="n">attr</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">_attr</span><span class="p">))</span>
+
+            <span class="c1"># Add Span to dictionary</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_span_dict</span><span class="p">[</span><span class="n">_get_span_dict_key</span><span class="p">(</span><span class="n">event</span><span class="p">)]</span> <span class="o">=</span> <span class="n">span</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>  <span class="c1"># noqa pylint: disable=broad-except</span>
+            <span class="k">if</span> <span class="n">span</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">span</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span><span class="n">Status</span><span class="p">(</span><span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">INTERNAL</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">ex</span><span class="p">)))</span>
+                <span class="n">span</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_remove_span</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CommandTracer.succeeded"><a class="viewcode-back" href="../../../ext/pymongo/pymongo.html#opentelemetry.ext.pymongo.CommandTracer.succeeded">[docs]</a>    <span class="k">def</span> <span class="nf">succeeded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">monitoring</span><span class="o">.</span><span class="n">CommandSucceededEvent</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Method to handle a pymongo CommandSucceededEvent &quot;&quot;&quot;</span>
+        <span class="n">span</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_span</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">span</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span>
+                <span class="s2">&quot;db.mongo.duration_micros&quot;</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">duration_micros</span>
+            <span class="p">)</span>
+            <span class="n">span</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span><span class="n">Status</span><span class="p">(</span><span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">OK</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">reply</span><span class="p">))</span>
+            <span class="n">span</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_remove_span</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CommandTracer.failed"><a class="viewcode-back" href="../../../ext/pymongo/pymongo.html#opentelemetry.ext.pymongo.CommandTracer.failed">[docs]</a>    <span class="k">def</span> <span class="nf">failed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">monitoring</span><span class="o">.</span><span class="n">CommandFailedEvent</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Method to handle a pymongo CommandFailedEvent &quot;&quot;&quot;</span>
+        <span class="n">span</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_span</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">span</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">span</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span>
+                <span class="s2">&quot;db.mongo.duration_micros&quot;</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">duration_micros</span>
+            <span class="p">)</span>
+            <span class="n">span</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span><span class="n">Status</span><span class="p">(</span><span class="n">StatusCanonicalCode</span><span class="o">.</span><span class="n">UNKNOWN</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">failure</span><span class="p">))</span>
+            <span class="n">span</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_remove_span</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_span</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_span_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_get_span_dict_key</span><span class="p">(</span><span class="n">event</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_remove_span</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_span_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">_get_span_dict_key</span><span class="p">(</span><span class="n">event</span><span class="p">))</span></div>
+
+
+<span class="k">def</span> <span class="nf">_get_span_dict_key</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">connection_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">request_id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">connection_id</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">event</span><span class="o">.</span><span class="n">request_id</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
