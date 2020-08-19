@@ -4,17 +4,15 @@ from tornado.httpclient import HTTPError, HTTPRequest
 
 from opentelemetry import propagators, trace
 from opentelemetry.instrumentation.utils import http_status_to_canonical_code
-from opentelemetry.trace.status import Status, StatusCanonicalCode
+from opentelemetry.trace.status import Status
 from opentelemetry.util import time_ns
 
 
 def _normalize_request(args, kwargs):
     req = args[0]
     if not isinstance(req, str):
-        # Not a string, no need to force the creation of a HTTPRequest
         return (args, kwargs)
 
-    # keep the original kwargs for calling fetch()
     new_kwargs = {}
     for param in ("callback", "raise_error"):
         if param in kwargs:
@@ -23,12 +21,11 @@ def _normalize_request(args, kwargs):
     req = HTTPRequest(req, **kwargs)
     new_args = [req]
     new_args.extend(args[1:])
-
-    # return the normalized args/kwargs
     return (new_args, new_kwargs)
 
 
-def fetch_async(tracer, func, handler, args, kwargs):
+def fetch_async(tracer, func, client, args, kwargs):
+    print('^^^^^^^^ calling fetch:: ', func)
     start_time = time_ns()
 
     # Return immediately if no args were provided (error)
@@ -66,10 +63,6 @@ def _finish_tracing_callback(future, span):
     description = None
     exc = future.exception()
     if exc:
-        # Tornado uses HTTPError to report some of the
-        # codes other than 2xx, so check the code is
-        # actually in the 5xx range - and include the
-        # status code for *all* HTTPError instances.
         if isinstance(exc, HTTPError):
             status_code = exc.code
         description = "{}: {}".format(type(exc).__name__, exc)
@@ -77,7 +70,6 @@ def _finish_tracing_callback(future, span):
         status_code = future.result().code
 
     if status_code is not None:
-        # TODO(owais): cast to int?
         span.set_attribute("http.status_code", status_code)
         span.set_status(
             Status(

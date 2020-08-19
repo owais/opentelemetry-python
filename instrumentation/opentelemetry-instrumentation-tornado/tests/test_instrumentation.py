@@ -13,28 +13,37 @@
 # limitations under the License.
 
 
-from tornado.testing import gen_test
+from tornado.testing import AsyncHTTPTestCase
 
+from opentelemetry.test.test_base import TestBase
 from opentelemetry import trace
 from opentelemetry.instrumentation.tornado import TornadoInstrumentor
 from opentelemetry.trace import SpanKind
 
-# pylint: disable=import-error
-from .app import make_app
-from .conftest import TornadoTest
-
-# TODO(owais): test uninstrument
+from .app import make_app, DynamicHandler
 
 
-class TestTornadoInstrumentation(TornadoTest):
 
-    instrumentor = TornadoInstrumentor()
+class TornadoTest(AsyncHTTPTestCase, TestBase):
 
     def get_app(self):
-        self.instrumentor.instrument()
         tracer = trace.get_tracer(__name__)
         app = make_app(tracer)
         return app
+
+
+    def setUp(self):
+        TornadoInstrumentor().instrument()
+        super().setUp()
+
+    def tearDown(self):
+        TornadoInstrumentor().uninstrument()
+        super().tearDown()
+
+
+# TODO(owais): test uninstrument
+
+class TestTornadoInstrumentation(TornadoTest):
 
     def test_http_calls(self):
         methods = ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"]
@@ -220,3 +229,77 @@ class TestTornadoInstrumentation(TornadoTest):
                 "http.status_code": 404,
             },
         )
+
+    def test_dynamic_handler(self):
+        response = self.fetch("/dyna")
+        self.assertEqual(response.code, 404)
+        self.memory_exporter.clear()
+
+        self._app.add_handlers(r'.+', [
+            (r'/dyna', DynamicHandler),
+        ])
+
+        response = self.fetch("/dyna")
+        self.assertEqual(response.code, 202)
+
+        spans = self.sorted_spans(self.memory_exporter.get_finished_spans())
+        self.assertEqual(len(spans), 2)
+        server, client = spans
+
+        self.assertEqual(server.name, "DynamicHandler.get")
+        self.assertTrue(server.parent.is_remote)
+        self.assertNotEqual(server.parent, client.context)
+        self.assertEqual(server.parent.span_id, client.context.span_id)
+        self.assertEqual(server.context.trace_id, client.context.trace_id)
+        self.assertEqual(server.kind, SpanKind.SERVER)
+        self.assert_span_has_attributes(
+            server,
+            {
+                "component": "tornado",
+                "http.method": "GET",
+                "http.scheme": "http",
+                "http.host": "127.0.0.1:" + str(self.get_http_port()),
+                "http.target": "/dyna",
+                "net.peer.ip": "127.0.0.1",
+                "http.status_text": "Accepted",
+                "http.status_code": 202,
+            },
+        )
+
+        self.assertEqual(client.name, "GET")
+        self.assertFalse(client.context.is_remote)
+        self.assertIsNone(client.parent)
+        self.assertEqual(client.kind, SpanKind.CLIENT)
+        self.assert_span_has_attributes(
+            client,
+            {
+                "component": "tornado",
+                "http.url": self.get_url("/dyna"),
+                "http.method": "GET",
+                "http.status_code": 202,
+            },
+        )
+
+
+
+class TestTornadoUninstrument(TornadoTest):
+
+    def test_uninstrument(self):
+        response = self.fetch("/")
+        self.assertEqual(response.code, 201)
+        spans = self.memory_exporter.get_finished_spans()
+        self.assertEqual(len(spans), 3)
+        manual, server, client = self.sorted_spans(spans)
+        self.assertEqual(manual.name, "manual")
+        self.assertEqual(server.name, "MainHandler.get")
+        self.assertEqual(client.name, "GET")
+        self.memory_exporter.clear()
+
+        TornadoInstrumentor().uninstrument()
+
+        response = self.fetch("/")
+        self.assertEqual(response.code, 201)
+        spans = self.memory_exporter.get_finished_spans()
+        self.assertEqual(len(spans), 1)
+        manual = spans[0]
+        self.assertEqual(manual.name, "manual")

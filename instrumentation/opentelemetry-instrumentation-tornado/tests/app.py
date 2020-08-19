@@ -51,7 +51,9 @@ class MainHandler(tornado.web.RequestHandler):
         return self._handler()
 
     def post(self):
-        return self._handler()
+        ret = self._handler()
+
+        return ret
 
     def patch(self):
         return self._handler()
@@ -72,6 +74,11 @@ class MainHandler(tornado.web.RequestHandler):
 class BadHandler(tornado.web.RequestHandler):
     def get(self):
         raise NameError("some random name error")
+
+
+class DynamicHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.set_status(202)
 
 
 def make_app(_tracer):

@@ -70,7 +70,7 @@ class TestBase(unittest.TestCase):
             self.assertEqual(val, span.attributes[key])
 
     def sorted_spans(self, spans):
-        return reversed(sorted(spans, key=lambda s: s._start_time))
+        return sorted(spans, key=lambda s: s._start_time, reverse=True)
 
     @staticmethod
     def create_tracer_provider(**kwargs):
